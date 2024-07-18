@@ -61,5 +61,60 @@ namespace TutorNotes
             forgotPasswordTxt.Foreground= customBrush;
             forgotPasswordTxt.FontWeight = FontWeights.Light;
         }
+
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception) 
+            { 
+            //
+            }
+        }
+
+        private void closeBttn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void minmzBttn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void minmzBttn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            minmzBttn.Background = customBrush;
+        }
+
+        private void minmzBttn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            minmzBttn.Background = Brushes.Transparent;
+        }
+
+        private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            closeBttn.Background = customBrush;
+        }
+
+        private void closeBttn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            closeBttn.Background = Brushes.Transparent;
+        }
+
+        private void maxmzBttn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            maxmzBttn.Background = customBrush;
+        }
+
+        private void maxmzBttn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            maxmzBttn.Background= Brushes.Transparent;
+        }
     }
 }

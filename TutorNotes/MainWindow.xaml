@@ -4,60 +4,103 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TutorNotes"
-        mc:Ignorable="d" FontSize="18" FontFamily="Century Gothic"
-        Title="Tutor Notes" Height="450" Width="800" >
+        mc:Ignorable="d" FontSize="18" FontFamily="Century Gothic"  WindowStartupLocation="CenterScreen"
+        Title="Tutor Notes" Height="450" Width="800" WindowStyle="None" ResizeMode="CanResizeWithGrip" Background="{x:Null}" MouseLeftButtonDown="dragWindow" >
 
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="10" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    
     <Window.Resources>
 
         <!-- Custom RGB colors -->
         <SolidColorBrush x:Key="CustomColor1">#8660D5</SolidColorBrush>
-        <SolidColorBrush x:Key="CustomColor2">#FFFF6600</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor2">#F2E3FA</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor3">#FF006600</SolidColorBrush>
+
+        <!-- Found this control template snippet online to help with default hover for button -->
+        <!-- https://learn.microsoft.com/en-us/answers/questions/837315/in-wpf-how-to-avoid-disable-mouse-hover-a-button-h -->
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+
 
     </Window.Resources>
 
+    <Border CornerRadius="5" Background="White" BorderBrush="Gray" BorderThickness="0.5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <!-- Far left of screen Col: 0-->
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+                <!-- Far right of screen Col: 5-->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="8" Fill="#D9C0E7"/>
+            
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.ColumnSpan="8" Margin="0">
+                <Button x:Name="minmzBttn" Grid.Column="5" BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="minmzBttn_Click" MouseEnter="minmzBttn_MouseEnter" MouseLeave="minmzBttn_MouseLeave">
+                    <Image Source="/Images/minimize-window.png" Width="35" Height="25"/>
+                </Button>
+                <Button x:Name="maxmzBttn" Grid.Column="6" BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" MouseEnter="maxmzBttn_MouseEnter" MouseLeave="maxmzBttn_MouseLeave">
+                    <Image Source="/Images/maximize-window.png" Width="35" Height="25"/>
+                </Button>
+                <Button x:Name="closeBttn" Grid.Column="7" BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="closeBttn_Click" MouseEnter="closeBttn_MouseEnter" MouseLeave="closeBttn_MouseLeave">
+                    <Image Source="/Images/close-window.png" Width="35" Height="25"/>
+                </Button>
+            </StackPanel>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <!-- Far left of screen Col: 0-->
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-            <!-- Far right of screen Col: 5-->
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-        
-        
-        <!-- Takes care of login credentials UI -->
-        <TextBlock Grid.Column="1" Grid.Row="1" FontSize="36" Text="Tutor Notes" FontFamily="Dubai Medium" Grid.ColumnSpan="3"
+
+            <!-- Takes care of login credentials UI -->
+            <TextBlock Grid.Column="1" Grid.Row="1" FontSize="36" Text="Tutor Notes" FontFamily="Dubai Medium" Grid.ColumnSpan="3"
                    Margin="0, 0, 0, 15"/>
 
-        <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Dubai Medium" FontWeight="Bold" Text="Username: " Margin="10"/>
-        <TextBox x:Name="usernameText" Grid.Column="2" Grid.Row="2" Width="150" Margin="10"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Dubai Medium" FontWeight="Bold" Text="Username: " Margin="10"/>
+            <TextBox x:Name="usernameText" Grid.Column="2" Grid.Row="2" Width="150" Margin="10"/>
 
-        <TextBlock Grid.Column="1" Grid.Row="3" FontFamily="Dubai Medium" FontWeight="Bold" Text="Password: " Margin="10"/>
-        <TextBox x:Name="passwordText" Grid.Column="2" Grid.Row="3" Width="150" Margin="10"/>
-        <Button x:Name="loginBttn" Content="Sign in" Grid.Column="3" Grid.Row="4" Margin="0, 20" Width="80" Click="loginBttn_Click"/>
+            <TextBlock Grid.Column="1" Grid.Row="3" FontFamily="Dubai Medium" FontWeight="Bold" Text="Password: " Margin="10"/>
+            <TextBox x:Name="passwordText" Grid.Column="2" Grid.Row="3" Width="150" Margin="10"/>
+            <Button x:Name="loginBttn" Content="Sign in" Grid.Column="3" Grid.Row="4" Margin="0, 20" Width="80" Click="loginBttn_Click"/>
 
-        <TextBlock x:Name="createAccountTxt" Grid.Column="1" Grid.Row="6" Text="Create account"  Margin="10" Grid.ColumnSpan="2" Foreground="{StaticResource CustomColor1}" MouseEnter="createAccount_MouseEnter" MouseLeave="createAccountTxt_MouseLeave">
-        </TextBlock>
-        <TextBlock x:Name="forgotPasswordTxt" Grid.Column="4" Grid.Row="6" Text="Forgot password?"  Foreground="{StaticResource CustomColor1}" Margin="10" MouseEnter="forgotPasswordTxt_MouseEnter" MouseLeave="forgotPasswordTxt_MouseLeave"/>
+            <TextBlock x:Name="createAccountTxt" Grid.Column="1" Grid.Row="6" Text="Create account"  Margin="10" Grid.ColumnSpan="2" Foreground="{StaticResource CustomColor1}" MouseEnter="createAccount_MouseEnter" MouseLeave="createAccountTxt_MouseLeave">
+            </TextBlock>
+            <TextBlock x:Name="forgotPasswordTxt" Grid.Column="4" Grid.Row="6" Text="Forgot password?"  Foreground="{StaticResource CustomColor1}" Margin="10" MouseEnter="forgotPasswordTxt_MouseEnter" MouseLeave="forgotPasswordTxt_MouseLeave"/>
 
 
 
-    </Grid>
+        </Grid>
+    </Border>
 </Window>
