@@ -102,16 +102,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\close-window.png" />
+    <Resource Include="Images\LoginDesign.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\maximize-window.png" />
+    <Resource Include="Images\max-win.png" />
+    <Resource Include="Images\min-win.png" />
+    <Resource Include="Images\restore-win.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\minimize-window.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\restore-window.png" />
+    <Resource Include="Images\close-win.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
