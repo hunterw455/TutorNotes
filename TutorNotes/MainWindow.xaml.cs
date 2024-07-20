@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
 
 namespace TutorNotes
 {
@@ -20,10 +22,28 @@ namespace TutorNotes
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
+            // Subscribe to SizeChanged event for dynamic resizing
+            SizeChanged += Window_SizeChanged;
         }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.BorderThickness = new System.Windows.Thickness(8);
+            }
+            else
+            {
+                this.BorderThickness = new System.Windows.Thickness(0);
+            }
+        }
+
 
         private void loginBttn_Click(object sender, RoutedEventArgs e)
         {
@@ -116,5 +136,18 @@ namespace TutorNotes
         {
             maxmzBttn.Background= Brushes.Transparent;
         }
+
+        private void maxmzBttn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+
+/*        private void RestoreButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Restore original font size and button size
+            CurrentFontSize = OriginalFontSize;
+            CurrentButtonSize = OriginalButtonSize;
+        }*/
+
     }
 }
