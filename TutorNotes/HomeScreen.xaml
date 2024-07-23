@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TutorNotes"
-        mc:Ignorable="d" FontSize="18" FontFamily="Century Gothic"  WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" FontSize="18" FontFamily="Gill Sans MT"  WindowStartupLocation="CenterScreen"
         Title="Home" Height="450" Width="800" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
-         Background="{x:Null}" MouseLeftButtonDown="dragWindow" Closed="HomeScreen_Closed">
+        Background="{x:Null}" MouseLeftButtonDown="dragWindow" Closed="HomeScreen_Closed">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="0" CornerRadius="10" CaptionHeight="0"/>
     </WindowChrome.WindowChrome>
@@ -18,8 +18,8 @@
         <SolidColorBrush x:Key="CustomColor2">#F4FFE9</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor3">#DAEDC9</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor4">#324B9A</SolidColorBrush>
-        <SolidColorBrush x:Key="CustomColor5">#DFDFFF</SolidColorBrush>
-        <SolidColorBrush x:Key="CustomColor6">#D44268</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor5">#F9F3FE</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor6">#C2A8D6</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor7">#9F1D8D</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor8">#FBFBFF</SolidColorBrush>
         <SolidColorBrush x:Key="CustomColor9">#985AC3</SolidColorBrush>
@@ -48,11 +48,36 @@
 
         <Style TargetType="Border" x:Key="RoundMe">
             <Setter Property="CornerRadius" Value="10"/>
+        </Style> 
+
+        <!-- Takes care of the hover over list items -->
+        <Style TargetType="ListBoxItem" x:Key="ListBoxStyleChange">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- IsMouseOver trigger -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#80C2A8D6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White"/>
         </Style>
+
     </Window.Resources>
 
     
-    <Border CornerRadius="5" Background="{StaticResource CustomColor3}" BorderBrush="Gray" BorderThickness="0.5">
+    <Border CornerRadius="5" Background="{StaticResource CustomColor8}" BorderBrush="Gray" BorderThickness="0.5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -92,7 +117,7 @@
             </Grid.RowDefinitions>
 
             <!-- Top bar of the window -->
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#9DBA7F"/>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#985AC3"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.ColumnSpan="16" Margin="0" >
                 <Button x:Name="minmzBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="minmzBttn_Click" MouseEnter="minmzBttn_MouseEnter" MouseLeave="minmzBttn_MouseLeave">
                     <Image Source="/Images/min-win.png" Width="35" Height="25"/>
@@ -112,15 +137,14 @@
             <!-- Assigned students -->
             <TextBlock Grid.Column="10" Grid.Row="2" FontFamily="Mistral" FontWeight="DemiBold" Text="Assigned Students" FontSize="20" HorizontalAlignment="Center"  Foreground="{StaticResource CustomColor4}" Margin="0"/>
             <Border Grid.Column="10" Grid.Row="3" Grid.RowSpan="13" BorderBrush="{StaticResource CustomColor7}" BorderThickness="2,2,2,2" >
-                <ListBox Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" Height="285" SelectionChanged="listBox_SelectionChanged" Background="{StaticResource CustomColor8}">
-                    <ListBoxItem Content="Item 1"/>
-                    <ListBoxItem Content="Item 2"/>
-                    <ListBoxItem Content="Item 3"/>
-                    <!-- Add more ListBoxItems as needed -->
+                <ListBox Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" Height="285" SelectionChanged="listBox_SelectionChanged">
+                    <ListBoxItem Content="Item 1" Style="{StaticResource ListBoxStyleChange}"/>
+                    <ListBoxItem Content="Item 2" Style="{StaticResource ListBoxStyleChange}"/>
+                    <ListBoxItem Content="Item 3" Style="{StaticResource ListBoxStyleChange}"/>
                 </ListBox>
             </Border>
 
-            <Button x:Name="editListBttn" Content="Edit" Grid.Column="10" Grid.Row="16" FontSize="15" Height="20" Width="45" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 5, 5, 0"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor5}" BorderBrush="Transparent">
+            <Button x:Name="editListBttn" Content="Edit" Grid.Column="10" Grid.Row="16" FontSize="15" Height="25" Width="45" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 5, 5, 0"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>
@@ -134,44 +158,44 @@
            <!-- Displays the days of the week -->
             <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="7" Orientation="Horizontal" Background="{StaticResource CustomColor5}">
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="2,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Monday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Monday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Tuesday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Tuesday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Wednesday" FontSize="14" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Wednesday" FontSize="14" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Thursday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock  Text="Thursday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Friday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Friday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,1,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Saturday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Saturday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
                 <Border BorderBrush="{StaticResource CustomColor7}" BorderThickness="1,2,2,0" Margin="0" Width="75">
-                    <TextBlock FontFamily="Dubai Medium" FontWeight="DemiBold" Text="Sunday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
+                    <TextBlock Text="Sunday" FontSize="15" Foreground="{StaticResource CustomColor1}" TextAlignment="Center"/>
                 </Border>
             </StackPanel>
 
 
-            <TextBlock Grid.Column="1" Grid.Row="5"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="8:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="6"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="9:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="7"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="10:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="8"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="11:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="9"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="12:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="10"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="1:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="11"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="2:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="12"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="3:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="13"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="4:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="14"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="5:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
-            <TextBlock Grid.Column="1" Grid.Row="15"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="6:00" FontSize="10" Foreground="{StaticResource CustomColor1}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="5"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="8:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="6"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="9:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="7"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="10:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="8"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="11:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="9"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="12:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="10"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="1:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="11"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="2:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="12"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="3:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="13"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="4:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="14"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="5:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
+            <TextBlock Grid.Column="1" Grid.Row="15"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="6:00" FontSize="10" Foreground="{StaticResource CustomColor4}" Height="20" TextAlignment="Right" Margin="0, 0, 2, 0"/>
 
 
             <!-- Creates the grid for the weekly schedule, will add ability to fill in time slots-->
-            <ItemsControl Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="7" Grid.RowSpan="11" ItemsSource="{Binding Cells}" Background="{StaticResource CustomColor8}">
+            <ItemsControl Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="7" Grid.RowSpan="11" ItemsSource="{Binding Cells}" Background="white">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="7" Rows="11"/>
