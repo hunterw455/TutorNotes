@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TutorNotes"
-        mc:Ignorable="d" FontSize="18" FontFamily="Gill Sans MT"  WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" FontSize="18" FontFamily="Calibri Light"  WindowStartupLocation="CenterScreen"
         Title="Home" Height="450" Width="800" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
         Background="{x:Null}" MouseLeftButtonDown="dragWindow" Closed="HomeScreen_Closed">
     <WindowChrome.WindowChrome>
@@ -117,25 +117,25 @@
             </Grid.RowDefinitions>
 
             <!-- Top bar of the window -->
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#985AC3"/>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#BFA7D1" Opacity="0.5"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.ColumnSpan="16" Margin="0" >
                 <Button x:Name="minmzBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="minmzBttn_Click" MouseEnter="minmzBttn_MouseEnter" MouseLeave="minmzBttn_MouseLeave">
-                    <Image Source="/Images/min-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/minimize.png" Width="35" Height="25"/>
                 </Button>
                 <Button x:Name="maxmzBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" MouseEnter="maxmzBttn_MouseEnter" MouseLeave="maxmzBttn_MouseLeave" Click="maxmzBttn_Click">
-                    <Image Source="/Images/max-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/maximize.png" Width="35" Height="25"/>
                 </Button>
                 <Button x:Name="closeBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="closeBttn_Click" MouseEnter="closeBttn_MouseEnter" MouseLeave="closeBttn_MouseLeave">
-                    <Image Source="/Images/close-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/close.png" Width="35" Height="25"/>
                 </Button>
             </StackPanel>
 
             <!-- Welcome Back {username} -->
-            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" FontFamily="Mistral" Text="Welcome Back " Margin="1,0"  FontSize="46" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" FontFamily="Mistral" Text="Welcome Back " Margin="0" VerticalAlignment="Bottom" FontSize="46" Foreground="{StaticResource CustomColor9}" FontWeight="Bold" Opacity="0.55"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" FontFamily="Century Gothic" Text="Welcome Back " Margin="1,0"  FontSize="46" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+
 
             <!-- Assigned students -->
-            <TextBlock Grid.Column="10" Grid.Row="2" FontFamily="Mistral" FontWeight="DemiBold" Text="Assigned Students" FontSize="20" HorizontalAlignment="Center"  Foreground="{StaticResource CustomColor4}" Margin="0"/>
+            <TextBlock Grid.Column="10" Grid.Row="2" FontFamily="Century Gothic" FontWeight="DemiBold" Text="Assigned Students" FontSize="20" HorizontalAlignment="Center"  Foreground="{StaticResource CustomColor4}" Margin="0"/>
             <Border Grid.Column="10" Grid.Row="3" Grid.RowSpan="13" BorderBrush="{StaticResource CustomColor7}" BorderThickness="2,2,2,2" >
                 <ListBox Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="175" Height="285" SelectionChanged="listBox_SelectionChanged">
                     <ListBoxItem Content="Item 1" Style="{StaticResource ListBoxStyleChange}"/>
@@ -144,7 +144,7 @@
                 </ListBox>
             </Border>
 
-            <Button x:Name="editListBttn" Content="Edit" Grid.Column="10" Grid.Row="16" FontSize="15" Height="25" Width="45" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 5, 5, 0"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent">
+            <Button x:Name="editListBttn" Content="Edit" Grid.Column="10" Grid.Row="16" FontFamily="Century Gothic" FontSize="15" Height="25" Width="45" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0, 5, 5, 0"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontWeight="Bold">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>
@@ -153,7 +153,7 @@
 
 
             <!-- Displays weekly schedule of {current week ahead} -->
-            <TextBlock Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4" FontFamily="Mistral" FontWeight="DemiBold" Text="Weekly Schedule" FontSize="25" HorizontalAlignment="Left" Foreground="{StaticResource CustomColor4}" Margin="0"/>
+            <TextBlock Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4" FontFamily="Century Gothic" FontWeight="DemiBold" Text="Weekly Schedule" FontSize="25" HorizontalAlignment="Left" Foreground="{StaticResource CustomColor4}" Margin="0"/>
 
            <!-- Displays the days of the week -->
             <StackPanel Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="7" Orientation="Horizontal" Background="{StaticResource CustomColor5}">

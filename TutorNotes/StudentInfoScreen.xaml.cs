@@ -101,6 +101,12 @@ namespace TutorNotes
         {
             this.WindowState = WindowState.Maximized;
         }
-
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
+            }
+        }
     }
 }

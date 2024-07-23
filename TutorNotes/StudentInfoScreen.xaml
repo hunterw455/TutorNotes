@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TutorNotes"
-        mc:Ignorable="d" FontSize="18" FontFamily="Gill Sans MT"  WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d" FontSize="18" FontFamily="Calibri Light"  WindowStartupLocation="CenterScreen"
         Title="StudentInformation" Height="550" Width="800" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
         Background="{x:Null}" MouseLeftButtonDown="dragWindow" Closed="HomeScreen_Closed">
     <WindowChrome.WindowChrome>
@@ -50,41 +50,18 @@
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
-        <!-- Takes care of the hover over list items -->
-        <Style TargetType="ListBoxItem" x:Key="ListBoxStyleChange">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="Border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Padding="{TemplateBinding Padding}">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- IsMouseOver trigger -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#80C2A8D6" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="White"/>
-        </Style>
-
     </Window.Resources>
 
 
     <Border CornerRadius="5" Background="{StaticResource CustomColor8}" BorderBrush="Gray" BorderThickness="0.5">
-        <Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
@@ -100,43 +77,64 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
             <!-- Top bar of the window -->
-            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#985AC3"/>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#BFA7D1" Opacity="0.5"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.ColumnSpan="16" Margin="0" >
                 <Button x:Name="minmzBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="minmzBttn_Click" MouseEnter="minmzBttn_MouseEnter" MouseLeave="minmzBttn_MouseLeave">
-                    <Image Source="/Images/min-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/minimize.png" Width="35" Height="25"/>
                 </Button>
                 <Button x:Name="maxmzBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" MouseEnter="maxmzBttn_MouseEnter" MouseLeave="maxmzBttn_MouseLeave" Click="maxmzBttn_Click">
-                    <Image Source="/Images/max-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/maximize.png" Width="35" Height="25"/>
                 </Button>
                 <Button x:Name="closeBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="closeBttn_Click" MouseEnter="closeBttn_MouseEnter" MouseLeave="closeBttn_MouseLeave">
-                    <Image Source="/Images/close-win.png" Width="35" Height="25"/>
+                    <Image Source="/Images/close.png" Width="35" Height="25"/>
                 </Button>
             </StackPanel>
 
             <!-- Student {student} -->
-            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Student " Margin="5,5"  FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Student " Margin="5,5" VerticalAlignment="Bottom" FontSize="30" Foreground="{StaticResource CustomColor9}" FontWeight="Bold" Opacity="0.55"/>
-            
-            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Goals " Margin="5,5"  FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Goals " Margin="5,5" VerticalAlignment="Bottom" FontSize="30" Foreground="{StaticResource CustomColor9}" FontWeight="Bold" Opacity="0.55"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Student" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
 
-            <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Level " Margin="10,5"  FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
-            <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Level " Margin="10, 5" VerticalAlignment="Bottom" FontSize="30" Foreground="{StaticResource CustomColor9}" FontWeight="Bold" Opacity="0.55"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Goals" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
 
-            <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Past Session Notes " Margin="5,5"  FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+            <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" FontFamily="Century Gothic" Text="Level" Margin="10,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
 
-            <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="7" Width="350" HorizontalAlignment="Left" Margin="10,5">
+            <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Past Session Notes" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+
+            <!-- Viewbox containing Calendar -->
+            <Viewbox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="7" Width="350" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0">
                 <Calendar/>
             </Viewbox>
 
-            <TextBlock Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Mistral" Text="Nots for " Margin="10,5"  FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+            <!-- Notes for {get day clicked on in calendar} -->
+            <TextBlock Grid.Column="5" Grid.Row="3" FontFamily="Century Gothic" Text="Notes for" Margin="10,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+            <TextBox x:Name="notesFromDay" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Height="100" VerticalAlignment="Top" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}"/>
+
+            <!-- Displays Grade-->
+            <TextBlock Grid.Column="6" Grid.Row="1" Grid.RowSpan="3" FontFamily="Century Gothic" Text="A" FontSize="75" Foreground="DarkSeaGreen" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0" FontWeight="Bold"/>
+
+            <!-- Displays current topic working on -->
+            <TextBlock Grid.Column="5" Grid.Row="7" FontFamily="Century Gothic" Text="Current Topic" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <TextBox x:Name="currentTopic" Grid.Column="5" Grid.Row="8" Height="40" Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}"/>
+
+            <!-- Displays next possible topics haven't covered -->
+            <TextBlock Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Next Possible Topics" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <ListBox Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="2" Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="60" SelectionChanged="listBox_SelectionChanged" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}">
+                    <ListBoxItem Content="Item 1"/>
+                    <ListBoxItem Content="Item 2" />
+                    <ListBoxItem Content="Item 3"/>
+            </ListBox>
+
+            <Button x:Name="editStudentInfoBttn" Content="Update Info" Grid.Column="5" Grid.Row="10" FontSize="15" Height="25" Width="95" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
+                </Button.Resources>
+            </Button>
 
         </Grid>
+
     </Border>
 </Window>
