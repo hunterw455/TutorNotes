@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,24 +10,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for StudentInfoScreen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class StudentInfoScreen : Window
     {
-
-        public MainWindow()
+        public StudentInfoScreen()
         {
             InitializeComponent();
+        }
 
-            // Subscribe to SizeChanged event for dynamic resizing
-            SizeChanged += Window_SizeChanged;
+        private void HomeScreen_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -44,53 +42,15 @@ namespace TutorNotes
             }
         }
 
-
-        private void loginBttn_Click(object sender, RoutedEventArgs e)
-        {
-            // Add functions and capabilities that take care of password authentication
-
-
-
-            // Will load in new window once user inputs valid login credentials
-            HomeScreen homeScreen = new HomeScreen();
-            this.Visibility = Visibility.Hidden;
-            homeScreen.Show();
-        }
-        private void createAccount_MouseEnter(object sender, MouseEventArgs e)
-        {
-            createAccountTxt.Foreground = Brushes.Purple;
-            createAccountTxt.FontWeight = FontWeights.Bold;
-        }
-
-        private void createAccountTxt_MouseLeave(object sender, MouseEventArgs e)
-        {
-            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor1");
-            createAccountTxt.Foreground = customBrush;
-            createAccountTxt.FontWeight = FontWeights.Light;
-        }
-
-        private void forgotPasswordTxt_MouseEnter(object sender, MouseEventArgs e)
-        {
-            forgotPasswordTxt.Foreground = Brushes.Purple;
-            forgotPasswordTxt.FontWeight= FontWeights.Bold;
-        }
-
-        private void forgotPasswordTxt_MouseLeave(object sender, MouseEventArgs e)
-        {
-            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor1");
-            forgotPasswordTxt.Foreground= customBrush;
-            forgotPasswordTxt.FontWeight = FontWeights.Light;
-        }
-
         private void dragWindow(object sender, MouseButtonEventArgs e)
         {
             try
             {
                 DragMove();
             }
-            catch (Exception) 
-            { 
-            //
+            catch (Exception)
+            {
+                //
             }
         }
 
@@ -134,20 +94,26 @@ namespace TutorNotes
 
         private void maxmzBttn_MouseLeave(object sender, MouseEventArgs e)
         {
-            maxmzBttn.Background= Brushes.Transparent;
+            maxmzBttn.Background = Brushes.Transparent;
         }
 
         private void maxmzBttn_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Maximized;
         }
-
-/*        private void RestoreButton_Click(object sender, RoutedEventArgs e)
+        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Restore original font size and button size
-            CurrentFontSize = OriginalFontSize;
-            CurrentButtonSize = OriginalButtonSize;
-        }*/
+            if (listBox.SelectedItem != null)
+            {
+                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
+            }
+        }
 
+        private void backBttn_Click(object sender, RoutedEventArgs e)
+        {
+            HomeScreen homeScreen = new HomeScreen();
+            this.Visibility = Visibility.Hidden;
+            homeScreen.Show();
+        }
     }
 }
