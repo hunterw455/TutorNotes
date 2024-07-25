@@ -148,5 +148,12 @@ namespace TutorNotes
                 MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
             }
         }
+
+        private void editListBttn_Click(object sender, RoutedEventArgs e)
+        {
+            StudentInfoScreen infoScreen = new StudentInfoScreen();
+            this.Visibility = Visibility.Hidden;
+            infoScreen.Show();
+        }
     }
 }

@@ -108,5 +108,12 @@ namespace TutorNotes
                 MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
             }
         }
+
+        private void backBttn_Click(object sender, RoutedEventArgs e)
+        {
+            HomeScreen homeScreen = new HomeScreen();
+            this.Visibility = Visibility.Hidden;
+            homeScreen.Show();
+        }
     }
 }

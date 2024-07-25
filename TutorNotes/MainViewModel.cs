@@ -10,6 +10,9 @@ using System.Windows;
 
 namespace TutorNotes
 {
+    /// <summary>
+    /// Helps with the handling of the cells in the weekly schedule
+    /// </summary>
     public class MainViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<ScheduleCell> _scheduleCells;
@@ -48,7 +51,6 @@ namespace TutorNotes
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
     public class ScheduleCell
     {
         public int Row { get; set; }
