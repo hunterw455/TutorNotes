@@ -105,7 +105,7 @@ namespace TutorNotes
 
         private void minmzBttn_MouseEnter(object sender, MouseEventArgs e)
         {
-            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");
             minmzBttn.Background = customBrush;
         }
 
@@ -116,7 +116,7 @@ namespace TutorNotes
 
         private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
         {
-            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");
             closeBttn.Background = customBrush;
         }
 
@@ -127,7 +127,7 @@ namespace TutorNotes
 
         private void maxmzBttn_MouseEnter(object sender, MouseEventArgs e)
         {
-            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor2");
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");
             maxmzBttn.Background = customBrush;
         }
 

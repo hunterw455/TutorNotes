@@ -107,12 +107,26 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CreateAccountWindow.xaml.cs">
+      <DependentUpon>CreateAccountWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPasswordWindow.xaml.cs">
+      <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StudentInfoScreen.xaml.cs">
       <DependentUpon>StudentInfoScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateInfoWindow.xaml.cs">
       <DependentUpon>UpdateInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="CreateAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForgotPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HomeScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

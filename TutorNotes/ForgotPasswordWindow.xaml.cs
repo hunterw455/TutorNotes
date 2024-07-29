@@ -15,20 +15,14 @@ using System.Windows.Shapes;
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for StudentInfoScreen.xaml
+    /// Interaction logic for ForgotPasswordWindow.xaml
     /// </summary>
-    public partial class StudentInfoScreen : Window
+    public partial class ForgotPasswordWindow : Window
     {
-        public StudentInfoScreen()
+        public ForgotPasswordWindow()
         {
             InitializeComponent();
         }
-
-        private void HomeScreen_Closed(object sender, EventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
 
@@ -100,26 +94,6 @@ namespace TutorNotes
         private void maxmzBttn_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Maximized;
-        }
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (listBox.SelectedItem != null)
-            {
-                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
-            }
-        }
-
-        private void backBttn_Click(object sender, RoutedEventArgs e)
-        {
-            HomeScreen homeScreen = new HomeScreen();
-            this.Visibility = Visibility.Hidden;
-            homeScreen.Show();
-        }
-
-        private void editStudentInfoBttn_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateInfoWindow updateInfo = new UpdateInfoWindow();
-            updateInfo.Show();
         }
     }
 }
