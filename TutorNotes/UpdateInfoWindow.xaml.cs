@@ -36,9 +36,9 @@ namespace TutorNotes
         }
         private void closeBttn_Click(object sender, RoutedEventArgs e)
         {
-            StudentInfoScreen studentInfoScreen = new StudentInfoScreen();
+
             this.Visibility = Visibility.Hidden;
-            studentInfoScreen.Show();
+
         }
 
 

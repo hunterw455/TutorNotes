@@ -19,9 +19,16 @@ namespace TutorNotes
     /// </summary>
     public partial class StudentInfoScreen : Window
     {
-        public StudentInfoScreen()
+        public StudentInfoScreen(Student s)
         {
             InitializeComponent();
+            studentNameText.Text = $"Name: {s.DisplayName}";
+            studentGradeLevelText.Text = $"Level: {s.Level}";
+            academicGoalText.Text = $"{s.AcademicGoal}";
+
+            DateTime today = DateTime.Today;
+            notesDateDisplay.Text = today.ToString("MMMM d, yyyy");
+
         }
 
         private void HomeScreen_Closed(object sender, EventArgs e)
@@ -103,10 +110,7 @@ namespace TutorNotes
         }
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listBox.SelectedItem != null)
-            {
-                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
-            }
+
         }
 
         private void backBttn_Click(object sender, RoutedEventArgs e)
@@ -120,6 +124,25 @@ namespace TutorNotes
         {
             UpdateInfoWindow updateInfo = new UpdateInfoWindow();
             updateInfo.Show();
+        }
+
+        private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime? selectedDate = calendar.SelectedDate;
+
+            // Check if a date is selected
+            if (selectedDate.HasValue)
+            {
+                // Format the date as "Day July 14th, 2024"
+                var dayOfWeek = selectedDate.Value.DayOfWeek.ToString();
+                var dayOfMonth = selectedDate.Value.Day;
+                var month = selectedDate.Value.ToString("MMMM");
+                var year = selectedDate.Value.Year;
+
+
+                // Set the formatted date to the TextBlock
+                notesDateDisplay.Text = $"{month} {dayOfMonth}, {year}";
+            }
         }
     }
 }

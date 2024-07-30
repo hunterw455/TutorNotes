@@ -19,20 +19,6 @@ namespace TutorNotes
     /// <summary>
     /// Interaction logic for HomeScreen.xaml
     /// </summary>
-    public class CellInfo
-    {
-        public string CellName { get; set; }
-        public Brush BorderBrush { get; set; }
-        public Thickness BorderThickness { get; set; }
-        // Add more properties as needed
-
-        public CellInfo(string name, Brush borderBrush, Thickness borderThickness)
-        {
-            CellName = name;
-            BorderBrush = borderBrush;
-            BorderThickness = borderThickness;
-        }
-    }
     public partial class HomeScreen : Window
     {
         public ObservableCollection<CellInfo> Cells { get; set; }
@@ -48,6 +34,8 @@ namespace TutorNotes
             {
                 WelcomeBackTxt.Text = "Welcome Back";
             }
+
+            listBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
 
             DataContext = this;
             PopulateCells();
@@ -153,17 +141,40 @@ namespace TutorNotes
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listBox.SelectedItem != null)
+            
+            if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
             {
-                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
+                Student s = (Student)listBox.SelectedItem;
+                StudentInfoScreen infoScreen = new StudentInfoScreen(s);
+                this.Visibility = Visibility.Hidden;
+                infoScreen.Show();
             }
         }
 
         private void editListBttn_Click(object sender, RoutedEventArgs e)
         {
-            StudentInfoScreen infoScreen = new StudentInfoScreen();
-            this.Visibility = Visibility.Hidden;
-            infoScreen.Show();
+
+        }
+
+        private void addStudentBttn_Click(object sender, RoutedEventArgs e)
+        {
+            AddStudentWindow addStudentWindow = new AddStudentWindow();
+            addStudentWindow.Show();
+        }
+    }
+    public class CellInfo
+    {
+        public string CellName { get; set; }
+        public Brush BorderBrush { get; set; }
+        public Thickness BorderThickness { get; set; }
+        // Add more properties as needed
+
+        public CellInfo(string name, Brush borderBrush, Thickness borderThickness)
+        {
+            CellName = name;
+            BorderBrush = borderBrush;
+            BorderThickness = borderThickness;
         }
     }
 }
+

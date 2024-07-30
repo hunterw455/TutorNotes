@@ -1,11 +1,11 @@
-﻿<Window x:Class="TutorNotes.UpdateInfoWindow"
+﻿<Window x:Class="TutorNotes.AddStudentWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TutorNotes"
         mc:Ignorable="d" FontSize="18" FontFamily="Century Gothic"  WindowStartupLocation="CenterScreen"
-        Title="Tutor Notes" Height="350" Width="450" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
+        Title="AddStudentWindow" Height="350" Width="450" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
         DataContext="{Binding RelativeSource={RelativeSource Self}}" Background="{x:Null}" MouseLeftButtonDown="dragWindow" >
 
     <WindowChrome.WindowChrome>
@@ -57,7 +57,7 @@
     <Border CornerRadius="5" Background="{StaticResource CustomColor5}" BorderBrush="Gray" BorderThickness="0.5">
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="35"/>
                 <!-- Far left of screen Col: 0-->
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -65,7 +65,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="35"/>
                 <!-- Far right of screen Col: 6-->
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -87,24 +87,33 @@
                 </Button>
             </StackPanel>
 
-            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Goals" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
-            <TextBox x:Name="updateGoal" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Width="250" Height="30" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" FontFamily="Century Gothic" Text="Fisrt Name" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
+            <TextBox x:Name="addFirstName" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5" Margin="80,0,0,0" Width="230" Height="30" VerticalAlignment="Bottom"/>
 
-            <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Grade" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
-            <ComboBox x:Name="updateLetterGrade" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Width="50" Height="30" Margin="20,0,0,0" HorizontalAlignment="left" VerticalAlignment="Bottom">
-                <ComboBoxItem Content="A" />
-                <ComboBoxItem Content="B" />
-                <ComboBoxItem Content="C" />
-                <ComboBoxItem Content="D" />
-                <ComboBoxItem Content="F" />
+            <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="3" FontFamily="Century Gothic" Text="Last Name" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
+            <TextBox x:Name="addLastName" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5" Margin="80,0,0,0" Width="230" Height="30" VerticalAlignment="Bottom"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" FontFamily="Century Gothic" Text="Grade Level" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
+            <ComboBox x:Name="GradeLevelComboBox" Grid.Row="4" Grid.Column="3" Width="70" Height="30" Margin="70,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <ComboBoxItem Content="K" />
+                <ComboBoxItem Content="1st" />
+                <ComboBoxItem Content="2nd" />
+                <ComboBoxItem Content="3rd" />
+                <ComboBoxItem Content="4th" />
+                <ComboBoxItem Content="5th" />
+                <ComboBoxItem Content="6th" />
+                <ComboBoxItem Content="7th" />
+                <ComboBoxItem Content="8th" />
+                <ComboBoxItem Content="9th" />
+                <ComboBoxItem Content="10th" />
+                <ComboBoxItem Content="11th" />
+                <ComboBoxItem Content="12th" />
             </ComboBox>
-            <TextBlock Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="5" FontFamily="Century Gothic" Text="Current Topic" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
-            <TextBox x:Name="updateCurrentTopic" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" Width="250" Height="30" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <TextBlock Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="5" FontFamily="Century Gothic" Text="Next Possible Topics" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
-            <TextBox x:Name="updateNextTopics" Grid.Row="6" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="5" Width="250" Height="30" Margin="0, 30, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <TextBlock Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" FontFamily="Century Gothic" Text="Current Goal" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
+            <TextBox x:Name="addCurrentGoal" Grid.Row="6" Grid.Column="1"  Grid.ColumnSpan="6" Width="370" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <Button x:Name="saveStudentEdits" Content="Save" Grid.Column="6" Grid.Row="7" FontSize="15" Height="25" Width="50" Margin="5, 10, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold">
+            <Button x:Name="addStudentBttn" Content="Add Student" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="3" FontSize="15" Height="30" Width="110" Margin="20, 0, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="addStudentBttn_Click">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>

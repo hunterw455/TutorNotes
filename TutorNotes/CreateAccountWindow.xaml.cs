@@ -128,7 +128,7 @@ namespace TutorNotes
             }
             else
             {
-                User user = new User(userUsername, userPassword, userFirstName, userLastName);
+                Educator user = new Educator(userUsername, userPassword, userFirstName, userLastName, "Educator"); // Can do a button that asks if a user is an educator or a supervisor or a student
                 users.Add(userUsername, user);
                 MainWindow mainWindow = new MainWindow();
                 this.Visibility = Visibility.Hidden;

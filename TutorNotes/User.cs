@@ -64,5 +64,13 @@ namespace TutorNotes
                 return this._lastName;
             }
         }
+
+        public int UserId
+        {
+            get
+            {
+                return this._userID;
+            }
+        }
     }
 }
