@@ -15,19 +15,16 @@ using System.Windows.Shapes;
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for UpdateInfoWindow.xaml
+    /// Interaction logic for StudentListWindow.xaml
     /// </summary>
-    public partial class UpdateInfoWindow : Window
+    public partial class StudentListWindow : Window
     {
-        private Student _s;
-        private Window _windowA;
-        public UpdateInfoWindow(Student s, Window windowA)
+        public StudentListWindow()
         {
             InitializeComponent();
-            this._s = s;
-            updateGoal.Text = this._s.AcademicGoal;
-            this._windowA = windowA;
+            editListBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
         }
+
         private void dragWindow(object sender, MouseButtonEventArgs e)
         {
             try
@@ -58,31 +55,12 @@ namespace TutorNotes
             closeBttn.Background = Brushes.Transparent;
         }
 
-        private void saveStudentEditsBttn_Click(object sender, RoutedEventArgs e)
+        private void deleteStudentBttn_Click(object sender, RoutedEventArgs e)
         {
-            var goal = updateGoal.Text.Trim();
-            var grade = (ComboBoxItem)updateLetterGrade.SelectedItem;
-            var valid = 0;
-            if (string.IsNullOrEmpty(goal))
+            var selectedValue = (Student)editListBox.SelectedValue;
+            if (selectedValue != null) 
             {
-                MessageBox.Show("You must enter a goal.");
-                valid++;
-            }
-            if (grade == null)
-            {
-                MessageBox.Show("You must select a letter grade.");
-                valid++;
-            }
-
-            if (valid == 0)
-            {
-                var gradeLevel = grade.Content.ToString();
-                this._s.Grade = gradeLevel;
-                this._s.AcademicGoal = goal;
-                this.Visibility = Visibility.Hidden;
-                this._windowA.Visibility = Visibility.Hidden;
-                StudentInfoScreen studentInfo = new StudentInfoScreen(this._s);
-                studentInfo.Show();
+                ((Educator)App.CurrentUser).removeStudent(selectedValue); // Will remove the student from the educator's list and it should automatically update in the home screen
             }
         }
     }

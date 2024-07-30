@@ -19,9 +19,23 @@ namespace TutorNotes
     /// </summary>
     public partial class StudentInfoScreen : Window
     {
-        public StudentInfoScreen()
+        private Student _s;
+        public StudentInfoScreen(Student s)
         {
             InitializeComponent();
+            _s = s; // Copies student to modify
+            studentNameText.Text = $"Name: {s.DisplayName}";
+            studentGradeLevelText.Text = $"Level: {s.Level}";
+            academicGoalText.Text = $"{s.AcademicGoal}";
+            DateTime today = DateTime.Today;
+            calendar.SelectedDate = today;
+            notesDateDisplay.Text = today.ToString("MMMM d, yyyy");
+            updateTextBlock(s.Grade);
+
+            if (s.StudentNotes.containsNote(today))
+            {
+                notesFromDay.Text = s.StudentNotes.getNote(today);
+            }
         }
 
         private void HomeScreen_Closed(object sender, EventArgs e)
@@ -103,10 +117,7 @@ namespace TutorNotes
         }
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (listBox.SelectedItem != null)
-            {
-                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
-            }
+
         }
 
         private void backBttn_Click(object sender, RoutedEventArgs e)
@@ -118,8 +129,63 @@ namespace TutorNotes
 
         private void editStudentInfoBttn_Click(object sender, RoutedEventArgs e)
         {
-            UpdateInfoWindow updateInfo = new UpdateInfoWindow();
+            UpdateInfoWindow updateInfo = new UpdateInfoWindow(_s, this);
             updateInfo.Show();
+        }
+
+        private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime? selectedDate = calendar.SelectedDate;
+            if (selectedDate.HasValue && _s != null)
+            {
+                DateTime date = selectedDate.Value;
+                notesDateDisplay.Text = date.ToString("MMMM d, yyyy");
+
+                notesFromDay.Text = _s.StudentNotes.getNote(date);
+            }
+        }
+
+        private void addNote_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime? selectedDate = calendar.SelectedDate;
+            if (selectedDate.HasValue)
+            {
+                var date = selectedDate.Value;
+                var note = notesFromDay.Text;
+                if (_s != null)
+                {
+                    _s.StudentNotes.addNote(note, date); // Adds the note from the selected day to the notes
+                }
+            }
+        }
+
+        private void updateTextBlock(string letter)
+        {
+            if (this._s.Grade != "" && this._s != null)
+            {
+                letterGradeText.Text = this._s.Grade;
+
+                Brush color;
+                switch (letter.ToUpper())
+                {
+                    case "A":
+                    case "B":
+                        color = Brushes.DarkSeaGreen;
+                        break;
+                    case "C":
+                    case "D":
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ebd564"));
+                        break;
+                    case "F":
+                        color = Brushes.Red;
+                        break;
+                    default:
+                        color = Brushes.Black; // Default color
+                        break;
+                }
+
+                letterGradeText.Foreground = color;
+            }
         }
     }
 }

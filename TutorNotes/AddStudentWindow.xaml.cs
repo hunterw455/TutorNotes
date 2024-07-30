@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for UpdateInfoWindow.xaml
+    /// Interaction logic for AddStudentWindow.xaml
     /// </summary>
-    public partial class UpdateInfoWindow : Window
+    public partial class AddStudentWindow : Window
     {
-        private Student _s;
-        private Window _windowA;
-        public UpdateInfoWindow(Student s, Window windowA)
+        public AddStudentWindow()
         {
             InitializeComponent();
-            this._s = s;
-            updateGoal.Text = this._s.AcademicGoal;
-            this._windowA = windowA;
         }
         private void dragWindow(object sender, MouseButtonEventArgs e)
         {
@@ -41,9 +36,9 @@ namespace TutorNotes
         }
         private void closeBttn_Click(object sender, RoutedEventArgs e)
         {
-
+            HomeScreen homeScreen = new HomeScreen();
             this.Visibility = Visibility.Hidden;
-
+            homeScreen.Show();
         }
 
 
@@ -58,32 +53,44 @@ namespace TutorNotes
             closeBttn.Background = Brushes.Transparent;
         }
 
-        private void saveStudentEditsBttn_Click(object sender, RoutedEventArgs e)
+        private void addStudentBttn_Click(object sender, RoutedEventArgs e)
         {
-            var goal = updateGoal.Text.Trim();
-            var grade = (ComboBoxItem)updateLetterGrade.SelectedItem;
+            var fName = addFirstName.Text.Trim();
+            var lName = addLastName.Text.Trim();
+            var goal = addCurrentGoal.Text.Trim();
+            var level = (ComboBoxItem)GradeLevelComboBox.SelectedItem;
             var valid = 0;
-            if (string.IsNullOrEmpty(goal))
+            if (string.IsNullOrEmpty(fName))
             {
-                MessageBox.Show("You must enter a goal.");
+                MessageBox.Show("You must enter a first name.");
                 valid++;
             }
-            if (grade == null)
+            if (string.IsNullOrEmpty(lName))
             {
-                MessageBox.Show("You must select a letter grade.");
+                MessageBox.Show("You must enter a last name.");
+                valid++;
+            }
+            if (level == null)
+            {
+                MessageBox.Show("You must select a grade level.");
+                valid++; 
+            }
+            if (string.IsNullOrEmpty(goal))
+            {
+                MessageBox.Show("You must enter an academic goal.");
                 valid++;
             }
 
+
+
             if (valid == 0)
             {
-                var gradeLevel = grade.Content.ToString();
-                this._s.Grade = gradeLevel;
-                this._s.AcademicGoal = goal;
+                var gradeLevel = level.Content.ToString();
+                Student student = new Student(fName, lName, gradeLevel, goal);
+                ((Educator)App.CurrentUser).addStudentToList(student);
                 this.Visibility = Visibility.Hidden;
-                this._windowA.Visibility = Visibility.Hidden;
-                StudentInfoScreen studentInfo = new StudentInfoScreen(this._s);
-                studentInfo.Show();
             }
+
         }
     }
 }

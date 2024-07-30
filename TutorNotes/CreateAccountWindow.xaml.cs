@@ -105,30 +105,41 @@ namespace TutorNotes
             var userPassword = createPassword.Text.Trim();
 
             var users = App.TutorNotesUsers;
+            var valid = 0;
 
             if (string.IsNullOrEmpty(userFirstName))
             {
                 MessageBox.Show("Input a first name");
+                valid++;
             }
-            else if (string.IsNullOrEmpty(userLastName))
+            
+            if (string.IsNullOrEmpty(userLastName))
             {
                 MessageBox.Show("Input a last name");
+                valid++;
             }
-            else if (string.IsNullOrEmpty(userUsername))
+            
+            if (string.IsNullOrEmpty(userUsername))
             {
                 MessageBox.Show("Input a username");
+                valid++;
             }
-            else if (string.IsNullOrEmpty(userPassword))
+            
+            if (string.IsNullOrEmpty(userPassword))
             {
                 MessageBox.Show("Input a password");
+                valid++;
             }
-            else if (users.ContainsKey(userUsername))
+            
+            if (users.ContainsKey(userUsername))
             {
                 MessageBox.Show("Enter a unique username");
+                valid++;
             }
-            else
+            
+            if(valid == 0)
             {
-                User user = new User(userUsername, userPassword, userFirstName, userLastName);
+                Educator user = new Educator(userUsername, userPassword, userFirstName, userLastName, "Educator"); // Can do a button that asks if a user is an educator or a supervisor or a student
                 users.Add(userUsername, user);
                 MainWindow mainWindow = new MainWindow();
                 this.Visibility = Visibility.Hidden;

@@ -20,8 +20,8 @@ namespace TutorNotes
             base.OnStartup(e);
 
             // Initialize the dictionary for user accounts
-            User user1 = new User("user1","abc123", "Jane", "Doe");
-            User user2 = new User("user2", "123abc", "John", "Doe");
+            Educator user1 = new Educator("user1","abc123", "Jane", "Doe", "Educator");
+            Educator user2 = new Educator("user2", "123abc", "John", "Doe", "Educator");
             TutorNotesUsers = new Dictionary<string, User>
             {
                 
@@ -30,8 +30,8 @@ namespace TutorNotes
             };
 
             // Shows the main window with log in screen
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
+/*            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();*/
         }
     }
 }
