@@ -23,5 +23,36 @@ namespace TutorNotes
         {
             InitializeComponent();
         }
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+        private void closeBttn_Click(object sender, RoutedEventArgs e)
+        {
+            StudentInfoScreen studentInfoScreen = new StudentInfoScreen();
+            this.Visibility = Visibility.Hidden;
+            studentInfoScreen.Show();
+        }
+
+
+        private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");
+            closeBttn.Background = customBrush;
+        }
+
+        private void closeBttn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            closeBttn.Background = Brushes.Transparent;
+        }
+
+
     }
 }

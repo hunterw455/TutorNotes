@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for StudentInfoScreen.xaml
+    /// Interaction logic for CreateAccountWindow.xaml
     /// </summary>
-    public partial class StudentInfoScreen : Window
+    public partial class CreateAccountWindow : Window
     {
-        public StudentInfoScreen()
+        public CreateAccountWindow()
         {
             InitializeComponent();
-        }
-
-        private void HomeScreen_Closed(object sender, EventArgs e)
-        {
-            Application.Current.Shutdown();
         }
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -101,25 +96,44 @@ namespace TutorNotes
         {
             this.WindowState = WindowState.Maximized;
         }
-        private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        private void createAccountbttn_Click(object sender, RoutedEventArgs e)
         {
-            if (listBox.SelectedItem != null)
+            var userFirstName = addFirstName.Text.Trim();
+            var userLastName = addLastName.Text.Trim();
+            var userUsername = createUsername.Text.Trim();
+            var userPassword = createPassword.Text.Trim();
+
+            var users = App.TutorNotesUsers;
+
+            if (string.IsNullOrEmpty(userFirstName))
             {
-                MessageBox.Show($"Selected item: {listBox.SelectedItem.ToString()}");
+                MessageBox.Show("Input a first name");
             }
-        }
-
-        private void backBttn_Click(object sender, RoutedEventArgs e)
-        {
-            HomeScreen homeScreen = new HomeScreen();
-            this.Visibility = Visibility.Hidden;
-            homeScreen.Show();
-        }
-
-        private void editStudentInfoBttn_Click(object sender, RoutedEventArgs e)
-        {
-            UpdateInfoWindow updateInfo = new UpdateInfoWindow();
-            updateInfo.Show();
+            else if (string.IsNullOrEmpty(userLastName))
+            {
+                MessageBox.Show("Input a last name");
+            }
+            else if (string.IsNullOrEmpty(userUsername))
+            {
+                MessageBox.Show("Input a username");
+            }
+            else if (string.IsNullOrEmpty(userPassword))
+            {
+                MessageBox.Show("Input a password");
+            }
+            else if (users.ContainsKey(userUsername))
+            {
+                MessageBox.Show("Enter a unique username");
+            }
+            else
+            {
+                User user = new User(userUsername, userPassword, userFirstName, userLastName);
+                users.Add(userUsername, user);
+                MainWindow mainWindow = new MainWindow();
+                this.Visibility = Visibility.Hidden;
+                mainWindow.Show();
+            }
         }
     }
 }

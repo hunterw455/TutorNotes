@@ -101,9 +101,9 @@
             <!-- Student {student} -->
             <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Student" Margin="5,15" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
 
-            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Goals" Margin="5,15" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Goal" Margin="5,15" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
 
-            <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" FontFamily="Century Gothic" Text="Level" Margin="10,5" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
+            <TextBlock Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" FontFamily="Century Gothic" Text="Level" Margin="5,15" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
 
             <TextBlock Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Past Session Notes" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
 
@@ -113,11 +113,17 @@
             </Viewbox>
 
             <!-- Notes for {get day clicked on in calendar} -->
-            <TextBlock Grid.Column="5" Grid.Row="3" FontFamily="Century Gothic" Text="Notes for" Margin="10,5" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
-            <TextBox x:Name="notesFromDay" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Height="95" VerticalAlignment="Top" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}"/>
-
+            <TextBlock Grid.Column="5" Grid.Row="2" FontFamily="Century Gothic" Text="Notes for" Margin="5,15" FontSize="30" Foreground="{StaticResource CustomColor4}"/>
+            <TextBox x:Name="notesFromDay" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2"  Grid.RowSpan="4" Height="102" VerticalAlignment="Top" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}" Margin="0,50, 0, 0"/>
+            <Button x:Name="addNote" Content="Add" Grid.Column="6" Grid.Row="4" FontSize="15" Height="25" Width="65" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Margin="0, 40, 0, 0">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
+                </Button.Resources>
+            </Button>
+            
             <!-- Displays Student's Grade Letter -->
-            <TextBlock Grid.Column="6" Grid.Row="1" Grid.RowSpan="2" FontFamily="Century Gothic" Text="A" FontSize="75" Foreground="DarkSeaGreen" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="50,0" FontWeight="Bold"/>
+            <TextBlock Grid.Column="6" Grid.Row="1" Grid.RowSpan="2" FontFamily="Century Gothic" Text="A" FontSize="75" Foreground="DarkSeaGreen" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0, 0,
+                       50" FontWeight="Bold"/>
 
             <!-- Displays current topic working on -->
             <TextBlock Grid.Column="5" Grid.Row="7" FontFamily="Century Gothic" Text="Current Topic" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
@@ -125,13 +131,13 @@
 
             <!-- Displays next possible topics haven't covered -->
             <TextBlock Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" FontFamily="Century Gothic" Text="Next Possible Topics" Margin="5,5" FontSize="30" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-            <ListBox Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="2" Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="60" SelectionChanged="listBox_SelectionChanged" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}">
+            <ListBox Grid.Column="5" Grid.Row="10" Grid.ColumnSpan="2" Name="listBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="350" Height="85" SelectionChanged="listBox_SelectionChanged" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}">
                     <ListBoxItem Content="Item 1"/>
                     <ListBoxItem Content="Item 2" />
                     <ListBoxItem Content="Item 3"/>
             </ListBox>
 
-            <Button x:Name="editStudentInfoBttn" Content="Update Info" Grid.Column="5" Grid.Row="10" FontSize="15" Height="25" Width="95" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold">
+            <Button x:Name="editStudentInfoBttn" Content="Update Info" Grid.Column="5" Grid.Row="10" FontSize="15" Height="25" Width="95" HorizontalAlignment="Left" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="editStudentInfoBttn_Click">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>
