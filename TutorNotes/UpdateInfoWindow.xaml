@@ -104,7 +104,7 @@
             <TextBlock Grid.Column="2" Grid.Row="6" Grid.ColumnSpan="5" FontFamily="Century Gothic" Text="Next Possible Topics" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
             <TextBox x:Name="updateNextTopics" Grid.Row="6" Grid.Column="2" Grid.RowSpan="2" Grid.ColumnSpan="5" Width="250" Height="30" Margin="0, 30, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <Button x:Name="saveStudentEdits" Content="Save" Grid.Column="6" Grid.Row="7" FontSize="15" Height="25" Width="50" Margin="5, 10, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold">
+            <Button x:Name="saveStudentEditsBttn" Content="Save" Grid.Column="6" Grid.Row="7" FontSize="15" Height="25" Width="50" Margin="5, 10, 0, 0" HorizontalAlignment="Left" VerticalAlignment="Top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="saveStudentEditsBttn_Click">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>

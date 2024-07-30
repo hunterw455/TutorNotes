@@ -119,14 +119,14 @@
                 <Run x:Name="notesDateDisplay" FontSize="20" Foreground="{StaticResource CustomColor4}"/>
             </TextBlock>
             <TextBox x:Name="notesFromDay" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2"  Grid.RowSpan="4" Height="102" VerticalAlignment="Top" BorderThickness="2" BorderBrush="{StaticResource CustomColor7}" Margin="0,50, 0, 0"/>
-            <Button x:Name="addNote" Content="Add" Grid.Column="6" Grid.Row="4" FontSize="15" Height="25" Width="65" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Margin="0, 40, 0, 0">
+            <Button x:Name="addNote" Content="Add" Grid.Column="6" Grid.Row="4" FontSize="15" Height="25" Width="65" HorizontalAlignment="Right" VerticalAlignment="Bottom"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Margin="0, 40, 0, 0" Click="addNote_Click">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>
             </Button>
             
             <!-- Displays Student's Grade Letter -->
-            <TextBlock Grid.Column="6" Grid.Row="1" Grid.RowSpan="2" FontFamily="Century Gothic" Text="A" FontSize="75" Foreground="DarkSeaGreen" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0, 0,
+            <TextBlock x:Name="letterGradeText" Grid.Column="6" Grid.Row="1" Grid.RowSpan="2" FontFamily="Century Gothic" FontSize="75" Foreground="DarkSeaGreen" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0, 0,
                        50" FontWeight="Bold"/>
 
             <!-- Displays current topic working on -->

@@ -22,6 +22,37 @@ namespace TutorNotes
         public StudentListWindow()
         {
             InitializeComponent();
+            editListBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
+        }
+
+        private void dragWindow(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                DragMove();
+            }
+            catch (Exception)
+            {
+                //
+            }
+        }
+        private void closeBttn_Click(object sender, RoutedEventArgs e)
+        {
+
+            this.Visibility = Visibility.Hidden;
+
+        }
+
+
+        private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
+        {
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");
+            closeBttn.Background = customBrush;
+        }
+
+        private void closeBttn_MouseLeave(object sender, MouseEventArgs e)
+        {
+            closeBttn.Background = Brushes.Transparent;
         }
     }
 }

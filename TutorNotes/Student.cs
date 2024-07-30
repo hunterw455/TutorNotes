@@ -10,7 +10,7 @@ namespace TutorNotes
     {
         private readonly string _firstName;
         private readonly string _lastName;
-        private char _grade;
+        private string _grade;
         private string _level;
         private Note _studentNotes;
         private string _academicGoal;
@@ -24,9 +24,19 @@ namespace TutorNotes
             this._level = level;
             this._academicGoal = goals;
             this._assignedEducator = ((Educator)App.CurrentUser);
+            this._studentNotes = new Note();
+            this._grade = "";
         }
 
-
+        public Student(Student s)
+        {
+            this._firstName = s.FirstName;
+            this._lastName = s.LastName;
+            this._level = s.Level;
+            this._assignedEducator = s.AssignedEducator;
+            this._academicGoal = s.AcademicGoal;
+            this._studentNotes = s.StudentNotes;
+        }
 
         public string DisplayName{
             get 
@@ -71,15 +81,31 @@ namespace TutorNotes
             }
         }
 
-        public char Grade
+        public Educator AssignedEducator
         {
             get
             {
-                throw new NotImplementedException();
+                return this._assignedEducator;
+            }
+        }
+
+        public Note StudentNotes
+        {
+            get
+            {
+                return this._studentNotes;
+            }
+        }
+
+        public string Grade
+        {
+            get
+            {
+                return this._grade;
             }
             set
             {
-                throw new NotImplementedException();
+                this._grade = value;
             }
         }
     }

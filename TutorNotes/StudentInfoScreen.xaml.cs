@@ -19,16 +19,23 @@ namespace TutorNotes
     /// </summary>
     public partial class StudentInfoScreen : Window
     {
+        private Student _s;
         public StudentInfoScreen(Student s)
         {
             InitializeComponent();
+            _s = s; // Copies student to modify
             studentNameText.Text = $"Name: {s.DisplayName}";
             studentGradeLevelText.Text = $"Level: {s.Level}";
             academicGoalText.Text = $"{s.AcademicGoal}";
-
             DateTime today = DateTime.Today;
+            calendar.SelectedDate = today;
             notesDateDisplay.Text = today.ToString("MMMM d, yyyy");
+            updateTextBlock(s.Grade);
 
+            if (s.StudentNotes.containsNote(today))
+            {
+                notesFromDay.Text = s.StudentNotes.getNote(today);
+            }
         }
 
         private void HomeScreen_Closed(object sender, EventArgs e)
@@ -122,26 +129,62 @@ namespace TutorNotes
 
         private void editStudentInfoBttn_Click(object sender, RoutedEventArgs e)
         {
-            UpdateInfoWindow updateInfo = new UpdateInfoWindow();
+            UpdateInfoWindow updateInfo = new UpdateInfoWindow(_s, this);
             updateInfo.Show();
         }
 
         private void calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             DateTime? selectedDate = calendar.SelectedDate;
+            if (selectedDate.HasValue && _s != null)
+            {
+                DateTime date = selectedDate.Value;
+                notesDateDisplay.Text = date.ToString("MMMM d, yyyy");
 
-            // Check if a date is selected
+                notesFromDay.Text = _s.StudentNotes.getNote(date);
+            }
+        }
+
+        private void addNote_Click(object sender, RoutedEventArgs e)
+        {
+            DateTime? selectedDate = calendar.SelectedDate;
             if (selectedDate.HasValue)
             {
-                // Format the date as "Day July 14th, 2024"
-                var dayOfWeek = selectedDate.Value.DayOfWeek.ToString();
-                var dayOfMonth = selectedDate.Value.Day;
-                var month = selectedDate.Value.ToString("MMMM");
-                var year = selectedDate.Value.Year;
+                var date = selectedDate.Value;
+                var note = notesFromDay.Text;
+                if (_s != null)
+                {
+                    _s.StudentNotes.addNote(note, date); // Adds the note from the selected day to the notes
+                }
+            }
+        }
 
+        private void updateTextBlock(string letter)
+        {
+            if (this._s.Grade != "" && this._s != null)
+            {
+                letterGradeText.Text = this._s.Grade;
 
-                // Set the formatted date to the TextBlock
-                notesDateDisplay.Text = $"{month} {dayOfMonth}, {year}";
+                Brush color;
+                switch (letter.ToUpper())
+                {
+                    case "A":
+                    case "B":
+                        color = Brushes.DarkSeaGreen;
+                        break;
+                    case "C":
+                    case "D":
+                        color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#ebd564"));
+                        break;
+                    case "F":
+                        color = Brushes.Red;
+                        break;
+                    default:
+                        color = Brushes.Black; // Default color
+                        break;
+                }
+
+                letterGradeText.Foreground = color;
             }
         }
     }

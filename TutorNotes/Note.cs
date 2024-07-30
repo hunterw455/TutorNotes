@@ -8,36 +8,52 @@ namespace TutorNotes
 {
     public class Note
     {
-        private string _dailyNote;
-        private DateTime _noteDate;
+        private Dictionary<DateTime, string> _noteCollection;
 
-        public void addNote()
-        {
-            throw new NotImplementedException();
+        public Note(){
+            this._noteCollection = new Dictionary<DateTime, string>();
         }
 
-        public string DailyNote
+        public void addNote(string s, DateTime day)
         {
-            get
+            if (!this._noteCollection.ContainsKey(day))
             {
-                throw new NotImplementedException();
+                this._noteCollection.Add(day, s);
+            }
+            else
+            {
+                this._noteCollection[day] = s;
+            }
+        }
+
+        public Dictionary<DateTime, string> NoteCollection
+        {
+            get 
+            {
+                return this._noteCollection;
             }
             set
             {
-                throw new NotImplementedException();
+                this._noteCollection = value;
             }
         }
 
-        public DateTime NoteDate
+        public string getNote(DateTime day)
         {
-            get
-            {
-                throw new NotImplementedException();
+            if (this._noteCollection.Count != 0 && this._noteCollection.ContainsKey(day)) {
+                var note = this._noteCollection[day];
+                return note;
             }
-            set
+            return "";
+        }
+
+        public bool containsNote(DateTime day)
+        {
+            if (this._noteCollection.Count != 0 && this._noteCollection.ContainsKey(day))
             {
-                throw new NotImplementedException();
+                return true;
             }
+            return false;
         }
     }
 }
