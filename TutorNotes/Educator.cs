@@ -48,5 +48,9 @@ namespace TutorNotes
         {
             this._studentsAssigned.Add(s);
         }
+
+        public void removeStudent(Student s){
+            this._studentsAssigned.Remove(s);
+        }
     }
 }

@@ -137,7 +137,7 @@
             <!-- Assigned students -->
             <TextBlock Grid.Column="10" Grid.Row="2" FontFamily="Century Gothic" FontWeight="DemiBold" Text="Assigned Students" FontSize="20" HorizontalAlignment="Center"  Foreground="{StaticResource CustomColor4}" Margin="0, 20, 0, 0"/>
 
-            <ListBox Name="listBox" Grid.Column="10" Grid.Row="3" Grid.RowSpan="12"   HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="260" SelectionChanged="listBox_SelectionChanged" BorderBrush="{StaticResource CustomColor7}" Margin="20, 5, 0, 0" BorderThickness="2,2,2,2">
+            <ListBox Name="listBox" Grid.Column="10" Grid.Row="3" Grid.RowSpan="12"   HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Height="260" SelectionChanged="listBox_SelectionChanged" BorderBrush="{StaticResource CustomColor7}" Margin="20, 5, 0, 0" BorderThickness="2,2,2,2" ItemContainerStyle="{StaticResource ListBoxStyleChange}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding DisplayName}" />

@@ -54,5 +54,14 @@ namespace TutorNotes
         {
             closeBttn.Background = Brushes.Transparent;
         }
+
+        private void deleteStudentBttn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedValue = (Student)editListBox.SelectedValue;
+            if (selectedValue != null) 
+            {
+                ((Educator)App.CurrentUser).removeStudent(selectedValue); // Will remove the student from the educator's list and it should automatically update in the home screen
+            }
+        }
     }
 }

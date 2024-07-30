@@ -153,7 +153,8 @@ namespace TutorNotes
 
         private void editListBttn_Click(object sender, RoutedEventArgs e)
         {
-
+            StudentListWindow studentListWindow = new StudentListWindow();
+            studentListWindow.Show();
         }
 
         private void addStudentBttn_Click(object sender, RoutedEventArgs e)
