@@ -77,6 +77,11 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Top bar of the window -->
@@ -93,15 +98,22 @@
                 </Button>
             </StackPanel>
 
+            
             <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Create a TutorNotes account" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Center"/>
+            
+            <TextBlock Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="First name" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
+            <TextBox x:Name="addFirstName" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="center" HorizontalAlignment="Left"/>
 
-            <TextBlock Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Username" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
-            <TextBox x:Name="createUsername" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="center" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Last name" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
+            <TextBox x:Name="addLastName" Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="center" HorizontalAlignment="Left"/>
 
-            <TextBlock Grid.Column="3" Grid.Row="5" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Password" Margin="0" VerticalAlignment="Top" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
-            <TextBox x:Name="createPassword" Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+            <TextBlock Grid.Column="3" Grid.Row="7" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Username" Margin="0" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
+            <TextBox x:Name="createUsername" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="center" HorizontalAlignment="Left"/>
 
-            <Button x:Name="createAccountbttn" Content="Create Account" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="6" FontSize="15" Height="25" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="center"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold">
+            <TextBlock Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Password" Margin="0" VerticalAlignment="top" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
+            <TextBox x:Name="createPassword" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0, 0, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+
+            <Button x:Name="createAccountbttn" Content="Create Account" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="11" FontSize="15" Height="25" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="createAccountbttn_Click">
                 <Button.Resources>
                     <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
                 </Button.Resources>

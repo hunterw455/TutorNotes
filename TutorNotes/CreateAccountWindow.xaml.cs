@@ -96,5 +96,44 @@ namespace TutorNotes
         {
             this.WindowState = WindowState.Maximized;
         }
+
+        private void createAccountbttn_Click(object sender, RoutedEventArgs e)
+        {
+            var userFirstName = addFirstName.Text.Trim();
+            var userLastName = addLastName.Text.Trim();
+            var userUsername = createUsername.Text.Trim();
+            var userPassword = createPassword.Text.Trim();
+
+            var users = App.TutorNotesUsers;
+
+            if (string.IsNullOrEmpty(userFirstName))
+            {
+                MessageBox.Show("Input a first name");
+            }
+            else if (string.IsNullOrEmpty(userLastName))
+            {
+                MessageBox.Show("Input a last name");
+            }
+            else if (string.IsNullOrEmpty(userUsername))
+            {
+                MessageBox.Show("Input a username");
+            }
+            else if (string.IsNullOrEmpty(userPassword))
+            {
+                MessageBox.Show("Input a password");
+            }
+            else if (users.ContainsKey(userUsername))
+            {
+                MessageBox.Show("Enter a unique username");
+            }
+            else
+            {
+                User user = new User(userUsername, userPassword, userFirstName, userLastName);
+                users.Add(userUsername, user);
+                MainWindow mainWindow = new MainWindow();
+                this.Visibility = Visibility.Hidden;
+                mainWindow.Show();
+            }
+        }
     }
 }

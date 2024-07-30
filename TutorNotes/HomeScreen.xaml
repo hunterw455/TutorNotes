@@ -131,7 +131,7 @@
             </StackPanel>
 
             <!-- Welcome Back {username} -->
-            <TextBlock Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" FontFamily="Century Gothic" Text="Welcome Back " Margin="1,0"  FontSize="40" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
+            <TextBlock x:Name="WelcomeBackTxt" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="7" FontFamily="Century Gothic" Margin="1,0"  FontSize="40" Foreground="{StaticResource CustomColor4}" FontWeight="Bold"/>
 
 
             <!-- Assigned students -->

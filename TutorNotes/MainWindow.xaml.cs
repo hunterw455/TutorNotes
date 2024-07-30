@@ -45,16 +45,35 @@ namespace TutorNotes
         }
 
 
+        // Signs the user in if they have the correct username and password
         private void loginBttn_Click(object sender, RoutedEventArgs e)
         {
-            // Add functions and capabilities that take care of password authentication
+            var enteredUsername = usernameText.Text;
+            var enteredPassword = passwordText.Text;
+
+            var users = App.TutorNotesUsers;
 
 
+            if (users.ContainsKey(enteredUsername))
+            {
+                if (users[enteredUsername].Password == enteredPassword)
+                {
 
-            // Will load in new window once user inputs valid login credentials
-            HomeScreen homeScreen = new HomeScreen();
-            this.Visibility = Visibility.Hidden;
-            homeScreen.Show();
+                    App.CurrentUser = users[enteredUsername];
+                    // Will load in new window once user inputs valid login credentials
+                    HomeScreen homeScreen = new HomeScreen();
+                    this.Visibility = Visibility.Hidden;
+                    homeScreen.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect Password.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Incorrect Username.");
+            }
         }
         private void createAccount_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -142,12 +161,18 @@ namespace TutorNotes
             this.WindowState = WindowState.Maximized;
         }
 
-/*        private void RestoreButton_Click(object sender, RoutedEventArgs e)
+        private void createAccountTxt_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            // Restore original font size and button size
-            CurrentFontSize = OriginalFontSize;
-            CurrentButtonSize = OriginalButtonSize;
-        }*/
+            CreateAccountWindow createAccountWindow = new CreateAccountWindow();
+            this.Visibility = Visibility.Hidden;
+            createAccountWindow.Show();
+        }
 
+        private void createAccountTxt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            CreateAccountWindow createAccountWin = new CreateAccountWindow();
+            this.Visibility = Visibility.Hidden;
+            createAccountWin.Show();
+        }
     }
 }

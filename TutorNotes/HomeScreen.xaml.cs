@@ -39,6 +39,16 @@ namespace TutorNotes
         public HomeScreen()
         {
             InitializeComponent();
+
+            if (App.CurrentUser != null)
+            {
+                WelcomeBackTxt.Text = $"Welcome Back {App.CurrentUser.FirstName}";
+            }
+            else
+            {
+                WelcomeBackTxt.Text = "Welcome Back";
+            }
+
             DataContext = this;
             PopulateCells();
         }

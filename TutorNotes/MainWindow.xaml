@@ -146,12 +146,10 @@
             
             <!-- Create Account/ Forgot Password -->
 
-                <TextBlock x:Name="createAccountTxt" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Margin="5" Text="Create account"  Foreground="{StaticResource CustomColor1}" MouseEnter="createAccount_MouseEnter" MouseLeave="createAccountTxt_MouseLeave">
+                <TextBlock x:Name="createAccountTxt" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Margin="5" Text="Create account"  Foreground="{StaticResource CustomColor1}" MouseEnter="createAccount_MouseEnter" MouseLeave="createAccountTxt_MouseLeave" MouseDown="createAccountTxt_MouseDown" MouseLeftButtonDown="createAccountTxt_MouseLeftButtonDown">
                 </TextBlock>
 
                 <TextBlock x:Name="forgotPasswordTxt" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="10" Margin="5" Text="Forgot password?" Foreground="{StaticResource CustomColor1}" MouseEnter="forgotPasswordTxt_MouseEnter" MouseLeave="forgotPasswordTxt_MouseLeave"/>
-
-            
 
         </Grid>
     </Border>

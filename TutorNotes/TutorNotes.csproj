@@ -119,6 +119,7 @@
     <Compile Include="UpdateInfoWindow.xaml.cs">
       <DependentUpon>UpdateInfoWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
     <Page Include="CreateAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
