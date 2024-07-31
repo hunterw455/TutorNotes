@@ -15,7 +15,6 @@ namespace TutorNotes
         private Note _studentNotes;
         private string _academicGoal;
         private Educator _assignedEducator;
-        private string _displayName;
 
         public Student(string fName, string lName, string level, string goals)
         {

@@ -1,0 +1,131 @@
+﻿<Window x:Class="TutorNotes.AddSessionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TutorNotes"
+        mc:Ignorable="d" FontSize="18" FontFamily="Century Gothic"  WindowStartupLocation="CenterScreen"
+        Title="AddSessionWindow" Height="170" Width="375" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Background="{x:Null}" MouseLeftButtonDown="dragWindow" >
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" CornerRadius="10" CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+
+    <Window.Resources>
+
+        <!-- Custom RGB colors -->
+        <SolidColorBrush x:Key="CustomColor1">#7A25C1</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor2">#F4FFE9</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor3">#aadafa</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor4">#324B9A</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor5">#F9F3FE</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor6">#C2A8D6</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor7">#9F1D8D</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor8">#FBFBFF</SolidColorBrush>
+        <SolidColorBrush x:Key="CustomColor9">#985AC3</SolidColorBrush>
+
+        <!-- Found this control template snippet online to help with default hover for button -->
+        <!-- https://learn.microsoft.com/en-us/answers/questions/837315/in-wpf-how-to-avoid-disable-mouse-hover-a-button-h -->
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <Style TargetType="Border" x:Key="RoundMe">
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+
+        <!-- Takes care of the hover over list items -->
+        <Style TargetType="ListBoxItem" x:Key="ListBoxStyleChange">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="Border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- IsMouseOver trigger -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#80C2A8D6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Border CornerRadius="5" Background="{StaticResource CustomColor5}" BorderBrush="Gray" BorderThickness="0.5">
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="35"/>
+                <!-- Far left of screen Col: 0-->
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="35"/>
+                <!-- Far right of screen Col: 6-->
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top bar of the window -->
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="16" Fill="#BFA7D1" Opacity="0.5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0" Grid.ColumnSpan="16" Margin="0" >
+                <Button x:Name="closeBttn"  BorderBrush="Transparent" Background="Transparent" Template="{StaticResource NoMouseOverButtonTemplate}" Click="closeBttn_Click" MouseEnter="closeBttn_MouseEnter" MouseLeave="closeBttn_MouseLeave">
+                    <Image Source="/Images/close.png" Width="35" Height="25"/>
+                </Button>
+            </StackPanel>
+
+            <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="6" FontFamily="Century Gothic" FontWeight="Bold" Text="Add a session" Margin="0, 10, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
+
+            <ComboBox Name="addStudentList" Grid.Column="1" Grid.Row="4" Grid.RowSpan="5" Grid.ColumnSpan="6"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Height="30" BorderBrush="{StaticResource CustomColor7}" Margin="0" BorderThickness="2,2,2,2" ItemContainerStyle="{StaticResource ListBoxStyleChange}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DisplayName}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Button x:Name="addSessionBttn" Content="Add Session" Grid.Column="1" Grid.Row="6" Grid.RowSpan="2" Grid.ColumnSpan="6" FontSize="15" Height="30" Width="110" Margin="0, 0, 0, 0" HorizontalAlignment="center" VerticalAlignment="Top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="addSessionBttn_Click">
+                <Button.Resources>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundMe}"/>
+                </Button.Resources>
+            </Button>
+
+        </Grid>
+    </Border>
+</Window>

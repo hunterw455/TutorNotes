@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,29 +38,38 @@ namespace TutorNotes
             }
 
             listBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
+            this.Cells = ((Educator)App.CurrentUser).Cells;
+            PopulateCells();
 
             DataContext = this;
-            PopulateCells();
         }
+
         private void PopulateCells()
         {
-            Cells = new ObservableCollection<CellInfo>();
             SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor7");
 
             // Example: Populate 77 cells (7 columns x 11 rows)
-            for (int row = 1; row <= 11; row++)
-            {
-                for (int col = 1; col <= 7; col++)
+             for (int row = 1; row <= 11; row++)
                 {
-                    string name = $"row{row}col{col}";
-                    Cells.Add(new CellInfo(name, customBrush, new Thickness(
-                        left: col == 1 ? 2 : 1,    // Adjust as needed
-                        top: row == 1 ? 2 : 1,     // Adjust as needed
-                        right: col == 7 ? 2 : 1,   // Adjust as needed
-                        bottom: row == 11 ? 2 : 1  // Adjust as needed
-                    )));
+                    for (int col = 1; col <= 7; col++)
+                    {
+
+                    if (((Educator)App.CurrentUser).Cells.Count < 77 || ((Educator)App.CurrentUser).Cells == null )
+                    {
+                        string name = $"row{row}col{col}";
+                        ((Educator)App.CurrentUser).addToCell(new CellInfo(name, customBrush, new Thickness(
+                            left: col == 1 ? 2 : 1,    // Adjust as needed
+                            top: row == 1 ? 2 : 1,     // Adjust as needed
+                            right: col == 7 ? 2 : 1,   // Adjust as needed
+                            bottom: row == 11 ? 2 : 1  // Adjust as needed
+                        ), row, col, Brushes.Transparent));
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    }
                 }
-            }
         }
 
         private void HomeScreen_Closed(object sender, EventArgs e)
@@ -141,7 +152,6 @@ namespace TutorNotes
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
             {
                 Student s = (Student)listBox.SelectedItem;
@@ -162,19 +172,75 @@ namespace TutorNotes
             AddStudentWindow addStudentWindow = new AddStudentWindow();
             addStudentWindow.Show();
         }
+
+
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var rectangle = sender as Rectangle;
+            if (rectangle == null) return;
+
+            var border = VisualTreeHelper.GetParent(rectangle) as Border;
+            if (border == null) return;
+
+            var cellInfo = border.DataContext as CellInfo;
+            if (cellInfo == null) return;
+
+            if (cellInfo.Fill != Brushes.Transparent)
+            {
+                MessageBox.Show($"A session time already occurs for {cellInfo.CellName}.");
+                return;
+            }
+
+
+            if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
+            {
+                AddSessionWindow addSessionWindow = new AddSessionWindow(cellInfo, this);
+                addSessionWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You do not have any students assigned yet to add sessions.");
+            }
+
+        }
     }
-    public class CellInfo
+    public class CellInfo : INotifyPropertyChanged
     {
+        private Brush _fill;
         public string CellName { get; set; }
         public Brush BorderBrush { get; set; }
         public Thickness BorderThickness { get; set; }
         // Add more properties as needed
 
-        public CellInfo(string name, Brush borderBrush, Thickness borderThickness)
+        public CellInfo(string name, Brush borderBrush, Thickness borderThickness, int row, int col, Brush fill)
         {
             CellName = name;
             BorderBrush = borderBrush;
             BorderThickness = borderThickness;
+            Fill = fill;
+        }
+
+        public Brush Fill
+        {
+            get
+            {
+                return this._fill;
+            }
+            set
+            {
+                if (this._fill != value)
+                {
+                    this._fill = value;
+                    OnPropertyChanged(nameof(Fill));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

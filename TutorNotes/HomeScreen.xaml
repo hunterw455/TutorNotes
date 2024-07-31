@@ -199,8 +199,7 @@
             <TextBlock Grid.Column="1" Grid.Row="13"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="4:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
             <TextBlock Grid.Column="1" Grid.Row="14"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="5:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
             <TextBlock Grid.Column="1" Grid.Row="15"  FontFamily="Dubai Medium" Text="6:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
-
-
+            
             <!-- Creates the grid for the weekly schedule, will add ability to fill in time slots-->
             <ItemsControl Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="7" Grid.RowSpan="11" ItemsSource="{Binding Cells}" Background="white">
                 <ItemsControl.ItemsPanel>
@@ -211,11 +210,13 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Tag="{Binding CellName}" BorderBrush="{Binding BorderBrush}" BorderThickness="{Binding BorderThickness}" Width="80" Margin="0">
-                            <Rectangle Fill="Transparent" RadiusX="5" RadiusY="10"/>
+                            <Rectangle Fill="{Binding Fill}" RadiusX="5" RadiusY="10" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+
         </Grid>
     </Border>
 </Window>

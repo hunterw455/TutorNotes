@@ -10,6 +10,7 @@ namespace TutorNotes
     public class Educator : User
     {
         private ObservableCollection<Student> _studentsAssigned;
+        private ObservableCollection<CellInfo> _cells;
         private Schedule _scheduleWeek;
         private string _userType;
 
@@ -17,11 +18,19 @@ namespace TutorNotes
         {
             this._userType = type; //If I were to expand it into different user types like educators, students, and supervisors
             this._studentsAssigned = new ObservableCollection<Student>();
+            this._cells = new ObservableCollection<CellInfo>();
         }
 
-        public void editStudentList()
+        public ObservableCollection<CellInfo> Cells
         {
-            throw new NotImplementedException();
+            get
+            {
+                return this._cells;
+            }
+            set
+            {
+                this._cells = value;
+            }
         }
 
         public ObservableCollection<Student> StudentsAssigned
@@ -51,6 +60,11 @@ namespace TutorNotes
 
         public void removeStudent(Student s){
             this._studentsAssigned.Remove(s);
+        }
+
+        public void addToCell(CellInfo c)
+        {
+            this._cells.Add(c);
         }
     }
 }
