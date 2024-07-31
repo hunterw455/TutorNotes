@@ -203,6 +203,11 @@ namespace TutorNotes
             }
 
         }
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     public class CellInfo : INotifyPropertyChanged
     {

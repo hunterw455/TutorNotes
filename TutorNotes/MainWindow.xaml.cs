@@ -67,12 +67,12 @@ namespace TutorNotes
                 }
                 else
                 {
-                    MessageBox.Show("Incorrect Password.");
+                    MessageBox.Show("Incorrect username or password.");
                 }
             }
             else
             {
-                MessageBox.Show("Incorrect Username.");
+                MessageBox.Show("Incorrect username or password.");
             }
         }
         private void createAccount_MouseEnter(object sender, MouseEventArgs e)

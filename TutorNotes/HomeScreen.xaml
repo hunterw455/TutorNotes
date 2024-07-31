@@ -210,7 +210,16 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Border Tag="{Binding CellName}" BorderBrush="{Binding BorderBrush}" BorderThickness="{Binding BorderThickness}" Width="80" Margin="0">
-                            <Rectangle Fill="{Binding Fill}" RadiusX="5" RadiusY="10" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown"/>
+                            <Rectangle Fill="{Binding Fill}" RadiusX="5" RadiusY="10" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
+                                <Rectangle.ContextMenu>
+                                   <ContextMenu Width="90" Placement="Center">
+                                        <MenuItem Header="Delete" Width="100" Click="DeleteMenuItem_Click"
+                                      IsEnabled="{Binding IsCellActivated}"/>
+                                       
+                                       
+                                    </ContextMenu>
+                                </Rectangle.ContextMenu>
+                            </Rectangle>
                         </Border>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
