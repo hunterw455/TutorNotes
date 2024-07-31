@@ -102,7 +102,7 @@ namespace TutorNotes
             var userFirstName = addFirstName.Text.Trim();
             var userLastName = addLastName.Text.Trim();
             var userUsername = createUsername.Text.Trim();
-            var userPassword = createPassword.Text.Trim();
+            var userPassword = createPassword.Password.Trim();
 
             var users = App.TutorNotesUsers;
             var valid = 0;

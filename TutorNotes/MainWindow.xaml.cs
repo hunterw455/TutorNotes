@@ -49,7 +49,7 @@ namespace TutorNotes
         private void loginBttn_Click(object sender, RoutedEventArgs e)
         {
             var enteredUsername = usernameText.Text;
-            var enteredPassword = passwordText.Text;
+            var enteredPassword = passwordText.Password;
 
             var users = App.TutorNotesUsers;
 
@@ -173,6 +173,13 @@ namespace TutorNotes
             CreateAccountWindow createAccountWin = new CreateAccountWindow();
             this.Visibility = Visibility.Hidden;
             createAccountWin.Show();
+        }
+
+        private void forgotPasswordTxt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ForgotPasswordWindow forgotPasswordWindow = new ForgotPasswordWindow();
+            this.Visibility= Visibility.Hidden;
+            forgotPasswordWindow.Show();
         }
     }
 }

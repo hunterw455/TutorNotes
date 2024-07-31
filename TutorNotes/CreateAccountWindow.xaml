@@ -111,7 +111,7 @@
             <TextBox x:Name="createUsername" Grid.Row="8" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0" VerticalAlignment="center" HorizontalAlignment="Left"/>
 
             <TextBlock Grid.Column="3" Grid.Row="9" Grid.ColumnSpan="7" FontFamily="Century Gothic" FontWeight="Bold" Text="Password" Margin="0" VerticalAlignment="top" FontSize="25" Foreground="{StaticResource CustomColor4}" HorizontalAlignment="Left"/>
-            <TextBox x:Name="createPassword" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0, 0, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
+            <PasswordBox x:Name="createPassword" Grid.Row="10" Grid.Column="3" Grid.ColumnSpan="3" Width="288" Height="30" Margin="0, 0, 0, 10" VerticalAlignment="Bottom" HorizontalAlignment="Left" />
 
             <Button x:Name="createAccountbttn" Content="Create Account" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="11" FontSize="15" Height="25" Margin="0" HorizontalAlignment="Stretch" VerticalAlignment="top"  Foreground="{StaticResource CustomColor4}" Background="{StaticResource CustomColor6}" BorderBrush="Transparent" FontFamily="Century Gothic" FontWeight="Bold" Click="createAccountbttn_Click">
                 <Button.Resources>

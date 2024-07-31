@@ -109,11 +109,6 @@
 
             <Viewbox Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="2" StretchDirection="Both" HorizontalAlignment="Left" VerticalAlignment="Center" MaxHeight="60" MaxWidth="300">
                 <TextBox x:Name="usernameText" MinWidth="160" Margin="0, 10, 0, 0">
-                    <TextBox.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </TextBox.Resources>
                 </TextBox>
             </Viewbox>
 
@@ -124,13 +119,13 @@
             </Viewbox>
 
             <Viewbox Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" StretchDirection="Both" HorizontalAlignment="Left" VerticalAlignment="Center" MaxHeight="60" MaxWidth="300">
-                <TextBox x:Name="passwordText" MinWidth="160" Margin="0, 10, 0, 0">
-                    <TextBox.Resources>
+                <PasswordBox x:Name="passwordText"  MinWidth="160" Margin="0, 10, 0, 0">
+                    <PasswordBox.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
-                    </TextBox.Resources>
-                </TextBox>
+                    </PasswordBox.Resources>
+                </PasswordBox>
             </Viewbox>
 
 
@@ -149,7 +144,7 @@
                 <TextBlock x:Name="createAccountTxt" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="10" Margin="5" Text="Create account"  Foreground="{StaticResource CustomColor1}" MouseEnter="createAccount_MouseEnter" MouseLeave="createAccountTxt_MouseLeave" MouseDown="createAccountTxt_MouseDown" MouseLeftButtonDown="createAccountTxt_MouseLeftButtonDown">
                 </TextBlock>
 
-                <TextBlock x:Name="forgotPasswordTxt" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="10" Margin="5" Text="Forgot password?" Foreground="{StaticResource CustomColor1}" MouseEnter="forgotPasswordTxt_MouseEnter" MouseLeave="forgotPasswordTxt_MouseLeave"/>
+                <TextBlock x:Name="forgotPasswordTxt" Grid.Column="5" Grid.Row="5" HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="10" Margin="5" Text="Forgot password?" Foreground="{StaticResource CustomColor1}" MouseEnter="forgotPasswordTxt_MouseEnter" MouseLeave="forgotPasswordTxt_MouseLeave" MouseLeftButtonDown="forgotPasswordTxt_MouseLeftButtonDown"/>
 
         </Grid>
     </Border>
