@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TutorNotes"
+        xmlns:local="clr-namespace:TutorNotes" Icon="Images/writing.ico"
         mc:Ignorable="d" FontSize="18" FontFamily="Calibri Light"  WindowStartupLocation="CenterScreen"
         Title="StudentInformation" Height="550" Width="900" WindowStyle="None" ResizeMode="CanResizeWithGrip" 
         Background="{x:Null}" MouseLeftButtonDown="dragWindow" Closed="HomeScreen_Closed">
