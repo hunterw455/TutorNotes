@@ -48,30 +48,7 @@ namespace TutorNotes
         {
             var enteredUsername = usernameText.Text;
             var enteredPassword = passwordText.Password;
-
-            var users = App.TutorNotesUsers;
-
-
-            if (users.ContainsKey(enteredUsername))
-            {
-                if (users[enteredUsername].Password == enteredPassword)
-                {
-
-                    App.CurrentUser = users[enteredUsername];
-                    // Will load in new window once user inputs valid login credentials
-                    HomeScreen homeScreen = new HomeScreen();
-                    this.Visibility = Visibility.Hidden;
-                    homeScreen.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect username or password.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect username or password.");
-            }
+            App.signInHandler.signIn(enteredUsername, enteredPassword, this);
         }
         private void createAccount_MouseEnter(object sender, MouseEventArgs e)
         {

@@ -18,6 +18,7 @@ namespace TutorNotes
         public static Dictionary<string, User> TutorNotesUsers { get; set; } = new Dictionary<string, User>(); // Probably not most secure, but will in future make better
         public static User CurrentUser { get; set; }
         public static Dictionary<string, List<string>> allCurriculum { get; set; } = new Dictionary<string, List<string>>();
+        public static SignInHandler signInHandler { get; set; }
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -31,6 +32,7 @@ namespace TutorNotes
                 { user1.Username, user1},
                 { user2.Username, user2}
             };
+            signInHandler = new SignInHandler(TutorNotesUsers);
 
             // Get the file path using relative path
             string jsonFilePath = "curriculum.json"; // Assumes the file is in the same directory as the executable

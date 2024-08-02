@@ -125,6 +125,7 @@
       <DependentUpon>ForgotPasswordWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Note.cs" />
+    <Compile Include="SignInHandler.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="StudentInfoScreen.xaml.cs">
       <DependentUpon>StudentInfoScreen.xaml</DependentUpon>
