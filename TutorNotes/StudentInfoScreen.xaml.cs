@@ -24,17 +24,24 @@ namespace TutorNotes
         {
             InitializeComponent();
             _s = s; // Copies student to modify
-            studentNameText.Text = $"Name: {s.DisplayName}";
-            studentGradeLevelText.Text = $"Level: {s.Level}";
-            academicGoalText.Text = $"{s.AcademicGoal}";
-            DateTime today = DateTime.Today;
-            calendar.SelectedDate = today;
-            notesDateDisplay.Text = today.ToString("MMMM d, yyyy");
-            updateTextBlock(s.Grade);
 
-            if (s.StudentNotes.containsNote(today))
+            if (_s != null)
             {
-                notesFromDay.Text = s.StudentNotes.getNote(today);
+                studentNameText.Text = $"Name: {_s.DisplayName}";
+                studentGradeLevelText.Text = $"Level: {_s.Level}";
+                academicGoalText.Text = $"{_s.AcademicGoal}";
+                DateTime today = DateTime.Today;
+                calendar.SelectedDate = today;
+                notesDateDisplay.Text = today.ToString("MMMM d, yyyy");
+                updateTextBlock(_s.Grade);
+                currentTopic.Text = _s.StudentCurriculum.currentTopic();
+                curriculumTopicsList.ItemsSource = _s.StudentCurriculum.CurrentCurriculum;
+
+
+                if (s.StudentNotes.containsNote(today))
+                {
+                    notesFromDay.Text = _s.StudentNotes.getNote(today);
+                }
             }
         }
 

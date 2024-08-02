@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,29 +38,40 @@ namespace TutorNotes
             }
 
             listBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
+            this.Cells = ((Educator)App.CurrentUser).Cells;
+            PopulateCells();
 
             DataContext = this;
-            PopulateCells();
         }
+
         private void PopulateCells()
         {
-            Cells = new ObservableCollection<CellInfo>();
             SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor7");
 
             // Example: Populate 77 cells (7 columns x 11 rows)
-            for (int row = 1; row <= 11; row++)
-            {
-                for (int col = 1; col <= 7; col++)
+             for (int row = 1; row <= 11; row++)
                 {
-                    string name = $"row{row}col{col}";
-                    Cells.Add(new CellInfo(name, customBrush, new Thickness(
-                        left: col == 1 ? 2 : 1,    // Adjust as needed
-                        top: row == 1 ? 2 : 1,     // Adjust as needed
-                        right: col == 7 ? 2 : 1,   // Adjust as needed
-                        bottom: row == 11 ? 2 : 1  // Adjust as needed
-                    )));
+                    for (int col = 1; col <= 7; col++)
+                    {
+
+                    if (((Educator)App.CurrentUser).Cells.Count < 77 || ((Educator)App.CurrentUser).Cells == null )
+                    {
+                        string name = ""; // If empty, will know it's not occupied by a student.
+
+                        //string name = $"row{row}col{col}";
+                        ((Educator)App.CurrentUser).addToCell(new CellInfo(name, customBrush, new Thickness(
+                            left: col == 1 ? 2 : 1,
+                            top: row == 1 ? 2 : 1,    
+                            right: col == 7 ? 2 : 1,   
+                            bottom: row == 11 ? 2 : 1  
+                        ), row, col, Brushes.Transparent));
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    }
                 }
-            }
         }
 
         private void HomeScreen_Closed(object sender, EventArgs e)
@@ -141,13 +154,15 @@ namespace TutorNotes
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
             {
                 Student s = (Student)listBox.SelectedItem;
-                StudentInfoScreen infoScreen = new StudentInfoScreen(s);
-                this.Visibility = Visibility.Hidden;
-                infoScreen.Show();
+                if (s != null)
+                {
+                    StudentInfoScreen infoScreen = new StudentInfoScreen(s);
+                    this.Visibility = Visibility.Hidden;
+                    infoScreen.Show();
+                }
             }
         }
 
@@ -162,19 +177,106 @@ namespace TutorNotes
             AddStudentWindow addStudentWindow = new AddStudentWindow();
             addStudentWindow.Show();
         }
+
+
+        private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var rectangle = sender as Rectangle;
+            if (rectangle == null) return;
+
+            var border = VisualTreeHelper.GetParent(rectangle) as Border;
+            if (border == null) return;
+
+            var cellInfo = border.DataContext as CellInfo;
+            if (cellInfo == null) return;
+
+            if (cellInfo.Fill != Brushes.Transparent)
+            {
+                MessageBox.Show($"A session time already occurs for {cellInfo.CellName}.");
+                return;
+            }
+
+
+            if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
+            {
+                AddSessionWindow addSessionWindow = new AddSessionWindow(cellInfo, this);
+                addSessionWindow.Show();
+            }
+            else
+            {
+                MessageBox.Show("You do not have any students assigned yet to add sessions.");
+            }
+
+        }
+
+        private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+
+            var cell = menuItem?.Tag as CellInfo;
+
+            if (cell != null)
+            {
+                cell.Fill = Brushes.Transparent;
+                cell.CellName = "";
+                cell.Emptiness = true;
+            }
+        }
     }
-    public class CellInfo
+    public class CellInfo : INotifyPropertyChanged
     {
+        private Brush _fill;
+        public bool _emptiness;
         public string CellName { get; set; }
         public Brush BorderBrush { get; set; }
         public Thickness BorderThickness { get; set; }
-        // Add more properties as needed
 
-        public CellInfo(string name, Brush borderBrush, Thickness borderThickness)
+        public CellInfo(string name, Brush borderBrush, Thickness borderThickness, int row, int col, Brush fill)
         {
             CellName = name;
             BorderBrush = borderBrush;
             BorderThickness = borderThickness;
+            Fill = fill;
+            Emptiness = true; // Will initially be empty when setting up the program.
+        }
+
+        public bool Emptiness
+        { 
+            get
+            {
+                return this._emptiness;
+            }
+            set
+            {
+                if (_emptiness != value)
+                {
+                    _emptiness = value;
+                    OnPropertyChanged(nameof(Emptiness));
+                }
+            }
+        }
+
+        public Brush Fill
+        {
+            get
+            {
+                return this._fill;
+            }
+            set
+            {
+                if (this._fill != value)
+                {
+                    this._fill = value;
+                    OnPropertyChanged(nameof(Fill));
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

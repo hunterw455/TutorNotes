@@ -15,7 +15,7 @@ namespace TutorNotes
         private Note _studentNotes;
         private string _academicGoal;
         private Educator _assignedEducator;
-        private string _displayName;
+        private Curriculum _studentCurriculum;
 
         public Student(string fName, string lName, string level, string goals)
         {
@@ -26,6 +26,7 @@ namespace TutorNotes
             this._assignedEducator = ((Educator)App.CurrentUser);
             this._studentNotes = new Note();
             this._grade = "";
+            this._studentCurriculum = new Curriculum(level);
         }
 
         public Student(Student s)
@@ -36,6 +37,25 @@ namespace TutorNotes
             this._assignedEducator = s.AssignedEducator;
             this._academicGoal = s.AcademicGoal;
             this._studentNotes = s.StudentNotes;
+            this._studentCurriculum = s.StudentCurriculum;
+            this._grade = s.Grade;
+        }
+
+        ~Student()
+        {
+
+        }
+
+        public Curriculum StudentCurriculum
+        {
+            get
+            {
+                return this._studentCurriculum;
+            }
+            set
+            {
+                this._studentCurriculum = value;
+            }
         }
 
         public string DisplayName{

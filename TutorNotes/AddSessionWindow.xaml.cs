@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,15 +17,20 @@ using System.Windows.Shapes;
 namespace TutorNotes
 {
     /// <summary>
-    /// Interaction logic for StudentListWindow.xaml
+    /// Interaction logic for AddSessionWindow.xaml
     /// </summary>
-    public partial class StudentListWindow : Window
+    public partial class AddSessionWindow : Window
     {
-        public StudentListWindow()
+        private CellInfo _cellInfo;
+        private Window _windowA;
+        public AddSessionWindow(CellInfo cellInfo, Window windowA)
         {
             InitializeComponent();
-            editListBox.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
+            addStudentList.ItemsSource = ((Educator)App.CurrentUser).StudentsAssigned;
+            _cellInfo = cellInfo;
+            _windowA = windowA;
         }
+
 
         private void dragWindow(object sender, MouseButtonEventArgs e)
         {
@@ -55,23 +62,22 @@ namespace TutorNotes
             closeBttn.Background = Brushes.Transparent;
         }
 
-        private void deleteStudentBttn_Click(object sender, RoutedEventArgs e)
+        private void addSessionBttn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedValue = (Student)editListBox.SelectedValue;
-            if (selectedValue != null) 
+            SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor3");
+
+            Student s = (Student)addStudentList.SelectedItem;
+            if (s != null)
             {
-                ((Educator)App.CurrentUser).removeStudent(selectedValue); // Will remove the student from the educator's list and it should automatically update in the home screen
-                
-                foreach (CellInfo c in ((Educator)App.CurrentUser).Cells)
-                {
-                    if (c.CellName == selectedValue.DisplayName)
-                    {
-                        c.Fill = Brushes.Transparent;
-                        c.CellName = "";
-                        c.Emptiness = true;
-                    }
-                }
+                _cellInfo.CellName = s.DisplayName;
+                _cellInfo.Fill = customBrush;
+                _cellInfo.Emptiness = false;
             }
+
+            this.Visibility = Visibility.Hidden;
+            this._windowA.Visibility = Visibility.Hidden;
+            HomeScreen homeScreen = new HomeScreen();
+            homeScreen.Show();
         }
     }
 }

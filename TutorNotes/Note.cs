@@ -13,6 +13,7 @@ namespace TutorNotes
         public Note(){
             this._noteCollection = new Dictionary<DateTime, string>();
         }
+        ~Note(){ }
 
         public void addNote(string s, DateTime day)
         {

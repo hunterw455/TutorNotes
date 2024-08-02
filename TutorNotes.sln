@@ -5,6 +5,11 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutorNotes", "TutorNotes\TutorNotes.csproj", "{234C2C38-AC34-4210-B477-D12CC92895A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TutorNotesTests", "TutorNotesTests\TutorNotesTests.csproj", "{371D108B-877C-43D9-B976-FEF17DD559B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{234C2C38-AC34-4210-B477-D12CC92895A4} = {234C2C38-AC34-4210-B477-D12CC92895A4}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +20,10 @@ Global
 		{234C2C38-AC34-4210-B477-D12CC92895A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{234C2C38-AC34-4210-B477-D12CC92895A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{234C2C38-AC34-4210-B477-D12CC92895A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{371D108B-877C-43D9-B976-FEF17DD559B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{371D108B-877C-43D9-B976-FEF17DD559B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{371D108B-877C-43D9-B976-FEF17DD559B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{371D108B-877C-43D9-B976-FEF17DD559B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

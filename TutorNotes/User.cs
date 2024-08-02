@@ -24,6 +24,7 @@ namespace TutorNotes
             this._userID = count;
             count++;
         }
+        ~User() { }
 
         public string Username
         {

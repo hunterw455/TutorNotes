@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
 
 namespace TutorNotes
 {
@@ -27,7 +26,6 @@ namespace TutorNotes
         {
             InitializeComponent();
 
-            // Subscribe to SizeChanged event for dynamic resizing
             SizeChanged += Window_SizeChanged;
         }
 
@@ -49,31 +47,8 @@ namespace TutorNotes
         private void loginBttn_Click(object sender, RoutedEventArgs e)
         {
             var enteredUsername = usernameText.Text;
-            var enteredPassword = passwordText.Text;
-
-            var users = App.TutorNotesUsers;
-
-
-            if (users.ContainsKey(enteredUsername))
-            {
-                if (users[enteredUsername].Password == enteredPassword)
-                {
-
-                    App.CurrentUser = users[enteredUsername];
-                    // Will load in new window once user inputs valid login credentials
-                    HomeScreen homeScreen = new HomeScreen();
-                    this.Visibility = Visibility.Hidden;
-                    homeScreen.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Incorrect Password.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect Username.");
-            }
+            var enteredPassword = passwordText.Password;
+            App.signInHandler.signIn(enteredUsername, enteredPassword, this);
         }
         private void createAccount_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -173,6 +148,13 @@ namespace TutorNotes
             CreateAccountWindow createAccountWin = new CreateAccountWindow();
             this.Visibility = Visibility.Hidden;
             createAccountWin.Show();
+        }
+
+        private void forgotPasswordTxt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ForgotPasswordWindow forgotPasswordWindow = new ForgotPasswordWindow();
+            this.Visibility= Visibility.Hidden;
+            forgotPasswordWindow.Show();
         }
     }
 }

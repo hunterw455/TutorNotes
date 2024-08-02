@@ -95,5 +95,44 @@ namespace TutorNotes
         {
             this.WindowState = WindowState.Maximized;
         }
+
+        private void createPassword_Click(object sender, RoutedEventArgs e) //Resets the password
+        {
+            var users = App.TutorNotesUsers;
+            var username = confirmUsername.Text;
+            var password1 = createNewPassword.Password.Trim();
+            var password2 = confirmNewPassword.Password.Trim();
+            var valid = 0;
+
+            if (!users.ContainsKey(username) && username != "")
+            {
+                MessageBox.Show("This user does not exist. Redirecting you to the sign in page.");
+                MainWindow mainWindow = new MainWindow();
+                this.Visibility = Visibility.Hidden;
+                mainWindow.Show();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(password1) || string.IsNullOrEmpty(password2) || string.IsNullOrEmpty(username))
+            {
+                MessageBox.Show("Must enter your username, new password, and confirm.");
+                valid++;
+            }
+
+            if (valid == 0)
+            {
+                if (password1 == password2)
+                {
+                    users[username].Password = password2;
+                    MainWindow mainWindow = new MainWindow();
+                    this.Visibility = Visibility.Hidden;
+                    mainWindow.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Passwords don't match.");
+                }
+            }
+        }
     }
 }
