@@ -74,6 +74,34 @@
             <Setter Property="Background" Value="White"/>
         </Style>
 
+        <!-- Style for MenuItem -->
+        <Style x:Key="DeleteMenuItemStyle" TargetType="MenuItem">
+            <Style.Triggers>
+                <!-- DataTrigger to disable and hide MenuItem based on Emptiness property -->
+                <DataTrigger Binding="{Binding Emptiness}" Value="True">
+                    <Setter Property="IsEnabled" Value="False"/>
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+                <!-- Optionally handle the case when Emptiness is False -->
+                <DataTrigger Binding="{Binding Emptiness}" Value="False">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Setter Property="IsEnabled" Value="True"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style for ContextMenu to adjust width and height based on condition -->
+        <Style x:Key="ContextMenuStyle" TargetType="ContextMenu">
+            <Style.Triggers>
+                <!-- DataTrigger to set Width and Height to 0 based on condition -->
+                <DataTrigger Binding="{Binding Emptiness}" Value="True">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+
     </Window.Resources>
 
     
@@ -199,8 +227,8 @@
             <TextBlock Grid.Column="1" Grid.Row="13"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="4:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
             <TextBlock Grid.Column="1" Grid.Row="14"  FontFamily="Dubai Medium" FontWeight="DemiBold" Text="5:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
             <TextBlock Grid.Column="1" Grid.Row="15"  FontFamily="Dubai Medium" Text="6:00" FontSize="15" Foreground="{StaticResource CustomColor4}" Height="25" TextAlignment="Right" Margin="0, 0, 2, 2"/>
-            
-            <!-- Creates the grid for the weekly schedule, will add ability to fill in time slots-->
+
+            <!-- Creates the grid for the weekly schedule, will add ability to fill in time slots -->
             <ItemsControl Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="7" Grid.RowSpan="11" ItemsSource="{Binding Cells}" Background="white">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -212,11 +240,9 @@
                         <Border Tag="{Binding CellName}" BorderBrush="{Binding BorderBrush}" BorderThickness="{Binding BorderThickness}" Width="80" Margin="0">
                             <Rectangle Fill="{Binding Fill}" RadiusX="5" RadiusY="10" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown">
                                 <Rectangle.ContextMenu>
-                                   <ContextMenu Width="90" Placement="Center">
-                                        <MenuItem Header="Delete" Width="100" Click="DeleteMenuItem_Click"
-                                      IsEnabled="{Binding IsCellActivated}"/>
-                                       
-                                       
+                                    <ContextMenu Style="{StaticResource ContextMenuStyle}" Placement="Relative" Tag="{Binding CellName}">
+                                        <MenuItem Header="Delete" Width="120" Click="DeleteMenuItem_Click"
+                                          Style="{StaticResource DeleteMenuItemStyle}" Tag="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                                     </ContextMenu>
                                 </Rectangle.ContextMenu>
                             </Rectangle>

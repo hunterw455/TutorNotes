@@ -64,13 +64,15 @@ namespace TutorNotes
 
         private void addSessionBttn_Click(object sender, RoutedEventArgs e)
         {
-            
             SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor3");
-            _cellInfo.Fill = customBrush;
 
             Student s = (Student)addStudentList.SelectedItem;
-            _cellInfo.CellName = s.DisplayName;
-
+            if (s != null)
+            {
+                _cellInfo.CellName = s.DisplayName;
+                _cellInfo.Fill = customBrush;
+                _cellInfo.Emptiness = false;
+            }
 
             this.Visibility = Visibility.Hidden;
             this._windowA.Visibility = Visibility.Hidden;

@@ -51,29 +51,6 @@
             <Setter Property="CornerRadius" Value="10"/>
         </Style>
 
-        <!-- Takes care of the hover over list items -->
-        <Style TargetType="ListBoxItem" x:Key="ListBoxStyleChange">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border x:Name="Border"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Padding="{TemplateBinding Padding}">
-                            <ContentPresenter />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- IsMouseOver trigger -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Border" Property="Background" Value="#80C2A8D6" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Background" Value="White"/>
-        </Style>
 
     </Window.Resources>
 
@@ -112,7 +89,7 @@
 
             <TextBlock Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="6" FontFamily="Century Gothic" FontWeight="Bold" Text="Edit List" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="25" Foreground="{StaticResource CustomColor4}"/>
 
-            <ListBox Name="editListBox" Grid.Column="1" Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="6"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="230" BorderBrush="{StaticResource CustomColor7}" Margin="0" BorderThickness="2,2,2,2" ItemContainerStyle="{StaticResource ListBoxStyleChange}">
+            <ListBox Name="editListBox" Grid.Column="1" Grid.Row="3" Grid.RowSpan="5" Grid.ColumnSpan="6"  HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="230" BorderBrush="{StaticResource CustomColor7}" Margin="0" BorderThickness="2,2,2,2">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding DisplayName}" />

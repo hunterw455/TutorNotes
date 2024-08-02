@@ -56,12 +56,14 @@ namespace TutorNotes
 
                     if (((Educator)App.CurrentUser).Cells.Count < 77 || ((Educator)App.CurrentUser).Cells == null )
                     {
-                        string name = $"row{row}col{col}";
+                        string name = ""; // If empty, will know it's not occupied by a student.
+
+                        //string name = $"row{row}col{col}";
                         ((Educator)App.CurrentUser).addToCell(new CellInfo(name, customBrush, new Thickness(
-                            left: col == 1 ? 2 : 1,    // Adjust as needed
-                            top: row == 1 ? 2 : 1,     // Adjust as needed
-                            right: col == 7 ? 2 : 1,   // Adjust as needed
-                            bottom: row == 11 ? 2 : 1  // Adjust as needed
+                            left: col == 1 ? 2 : 1,
+                            top: row == 1 ? 2 : 1,    
+                            right: col == 7 ? 2 : 1,   
+                            bottom: row == 11 ? 2 : 1  
                         ), row, col, Brushes.Transparent));
                     }
                     else
@@ -206,16 +208,25 @@ namespace TutorNotes
 
         private void DeleteMenuItem_Click(object sender, RoutedEventArgs e)
         {
+            var menuItem = sender as MenuItem;
 
+            var cell = menuItem?.Tag as CellInfo;
+
+            if (cell != null)
+            {
+                cell.Fill = Brushes.Transparent;
+                cell.CellName = "";
+                cell.Emptiness = true;
+            }
         }
     }
     public class CellInfo : INotifyPropertyChanged
     {
         private Brush _fill;
+        public bool _emptiness;
         public string CellName { get; set; }
         public Brush BorderBrush { get; set; }
         public Thickness BorderThickness { get; set; }
-        // Add more properties as needed
 
         public CellInfo(string name, Brush borderBrush, Thickness borderThickness, int row, int col, Brush fill)
         {
@@ -223,6 +234,23 @@ namespace TutorNotes
             BorderBrush = borderBrush;
             BorderThickness = borderThickness;
             Fill = fill;
+            Emptiness = true; // Will initially be empty when setting up the program.
+        }
+
+        public bool Emptiness
+        { 
+            get
+            {
+                return this._emptiness;
+            }
+            set
+            {
+                if (_emptiness != value)
+                {
+                    _emptiness = value;
+                    OnPropertyChanged(nameof(Emptiness));
+                }
+            }
         }
 
         public Brush Fill

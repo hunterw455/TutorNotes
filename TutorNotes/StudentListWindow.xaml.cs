@@ -61,6 +61,16 @@ namespace TutorNotes
             if (selectedValue != null) 
             {
                 ((Educator)App.CurrentUser).removeStudent(selectedValue); // Will remove the student from the educator's list and it should automatically update in the home screen
+                
+                foreach (CellInfo c in ((Educator)App.CurrentUser).Cells)
+                {
+                    if (c.CellName == selectedValue.DisplayName)
+                    {
+                        c.Fill = Brushes.Transparent;
+                        c.CellName = "";
+                        c.Emptiness = true;
+                    }
+                }
             }
         }
     }
