@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace TutorNotes
 {
@@ -15,6 +17,7 @@ namespace TutorNotes
     {
         public static Dictionary<string, User> TutorNotesUsers { get; set; } = new Dictionary<string, User>(); // Probably not most secure, but will in future make better
         public static User CurrentUser { get; set; }
+        public static Dictionary<string, List<string>> allCurriculum { get; set; } = new Dictionary<string, List<string>>();
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -29,9 +32,17 @@ namespace TutorNotes
                 { user2.Username, user2}
             };
 
-            // Shows the main window with log in screen
-/*            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();*/
+            // Get the file path using relative path
+            string jsonFilePath = "curriculum.json"; // Assumes the file is in the same directory as the executable
+            string jsonContent = File.ReadAllText(jsonFilePath);
+            allCurriculum = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(jsonContent);
+
+            foreach(var topic in allCurriculum["1st"])
+            {
+                Console.WriteLine(topic);
+            }
+
+
         }
     }
 }

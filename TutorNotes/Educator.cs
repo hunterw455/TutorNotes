@@ -11,7 +11,6 @@ namespace TutorNotes
     {
         private ObservableCollection<Student> _studentsAssigned;
         private ObservableCollection<CellInfo> _cells;
-        private Schedule _scheduleWeek;
         private string _userType;
 
         public Educator(string username, string password, string fName, string lName, string type) : base(username, password, fName, lName)
@@ -38,18 +37,6 @@ namespace TutorNotes
             get
             {
                 return this._studentsAssigned;
-            }
-        }
-
-        public Schedule ScheduleWeek
-        {
-            get
-            {
-                return this._scheduleWeek;
-            }
-            set
-            {
-                this._scheduleWeek = value;
             }
         }
 

@@ -13,8 +13,10 @@ namespace TutorNotes
         public Curriculum(string grade)
         {
             this._currentCurriculum = new List<string>();
-            this._currentCurriculum = setCurriculumByGrade(grade);
+            this._currentCurriculum = App.allCurriculum[grade];
         }
+
+        ~Curriculum() { }
 
         public List<string> CurrentCurriculum
         {
@@ -22,22 +24,20 @@ namespace TutorNotes
             {
                 return this._currentCurriculum;
             }
+            set
+            {
+                this._currentCurriculum = value;
+            }
         }
 
-        public List<string> setCurriculumByGrade(string grade)
+        public void removeTopic(string topic)
         {
-            Dictionary<string, List<string>> _allCurriculum = new Dictionary<string, List<string>>();
-            populateDictionary();
-            // Will search through the dictionary and get the list 
-
-
-            return new List<string>();
+            CurrentCurriculum.Remove(topic);
         }
 
-        public void populateDictionary()
+        public string currentTopic()
         {
-            // See if can read in a text file with grades and topics
+            return CurrentCurriculum[0];
         }
-
     }
 }

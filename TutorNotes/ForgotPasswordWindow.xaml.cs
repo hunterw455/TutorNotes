@@ -104,16 +104,18 @@ namespace TutorNotes
             var password2 = confirmNewPassword.Password.Trim();
             var valid = 0;
 
-            if (!users.ContainsKey(username))
+            if (!users.ContainsKey(username) && username != "")
             {
                 MessageBox.Show("This user does not exist. Redirecting you to the sign in page.");
                 MainWindow mainWindow = new MainWindow();
                 this.Visibility = Visibility.Hidden;
                 mainWindow.Show();
+                return;
             }
-            if (string.IsNullOrEmpty(password1) || string.IsNullOrEmpty(password2))
+
+            if (string.IsNullOrEmpty(password1) || string.IsNullOrEmpty(password2) || string.IsNullOrEmpty(username))
             {
-                MessageBox.Show("Must enter a new password and confirm.");
+                MessageBox.Show("Must enter your username, new password, and confirm.");
                 valid++;
             }
 
@@ -122,6 +124,9 @@ namespace TutorNotes
                 if (password1 == password2)
                 {
                     users[username].Password = password2;
+                    MainWindow mainWindow = new MainWindow();
+                    this.Visibility = Visibility.Hidden;
+                    mainWindow.Show();
                 }
                 else
                 {

@@ -157,9 +157,12 @@ namespace TutorNotes
             if (((Educator)App.CurrentUser).StudentsAssigned.Count != 0)
             {
                 Student s = (Student)listBox.SelectedItem;
-                StudentInfoScreen infoScreen = new StudentInfoScreen(s);
-                this.Visibility = Visibility.Hidden;
-                infoScreen.Show();
+                if (s != null)
+                {
+                    StudentInfoScreen infoScreen = new StudentInfoScreen(s);
+                    this.Visibility = Visibility.Hidden;
+                    infoScreen.Show();
+                }
             }
         }
 
