@@ -10,7 +10,7 @@ namespace TutorNotes
     public class Educator : User
     {
         private ObservableCollection<Student> _studentsAssigned;
-        private ObservableCollection<CellInfo> _cells;
+        private ObservableCollection<CellInfo> _cells; // Essentially tracks the educator's schedule blocks
         private string _userType;
 
         public Educator(string username, string password, string fName, string lName, string type) : base(username, password, fName, lName)
@@ -20,6 +20,7 @@ namespace TutorNotes
             this._cells = new ObservableCollection<CellInfo>();
         }
 
+        // Properties
         public ObservableCollection<CellInfo> Cells
         {
             get
@@ -40,6 +41,7 @@ namespace TutorNotes
             }
         }
 
+        // Methods
         public void addStudentToList(Student s)
         {
             this._studentsAssigned.Add(s);

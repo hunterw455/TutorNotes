@@ -37,7 +37,6 @@ namespace TutorNotes
                 currentTopic.Text = _s.StudentCurriculum.currentTopic();
                 curriculumTopicsList.ItemsSource = _s.StudentCurriculum.CurrentCurriculum;
 
-
                 if (s.StudentNotes.containsNote(today))
                 {
                     notesFromDay.Text = _s.StudentNotes.getNote(today);
@@ -124,7 +123,7 @@ namespace TutorNotes
         }
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //
         }
 
         private void backBttn_Click(object sender, RoutedEventArgs e)
@@ -166,6 +165,7 @@ namespace TutorNotes
             }
         }
 
+        // Changes color for the grade letters A, B, C, D, F
         private void updateTextBlock(string letter)
         {
             if (this._s.Grade != "" && this._s != null)

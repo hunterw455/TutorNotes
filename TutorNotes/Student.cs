@@ -46,6 +46,7 @@ namespace TutorNotes
 
         }
 
+        // Properties
         public Curriculum StudentCurriculum
         {
             get

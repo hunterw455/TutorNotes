@@ -25,8 +25,14 @@ namespace TutorNotes
         {
             InitializeComponent();
             this._s = s;
-            updateGoal.Text = this._s.AcademicGoal;
-            this._windowA = windowA;
+            if (this._s != null)
+            {
+                updateGoal.Text = _s.AcademicGoal;
+                updateCurrentTopic.Text = _s.StudentCurriculum.currentTopic();
+                updateNextTopics.ItemsSource = _s.StudentCurriculum.CurrentCurriculum;
+                this._windowA = windowA;
+            }
+       
         }
         private void dragWindow(object sender, MouseButtonEventArgs e)
         {
@@ -45,7 +51,6 @@ namespace TutorNotes
             this.Visibility = Visibility.Hidden;
 
         }
-
 
         private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
         {

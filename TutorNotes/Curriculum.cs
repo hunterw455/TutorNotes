@@ -18,6 +18,7 @@ namespace TutorNotes
 
         ~Curriculum() { }
 
+        // Properties
         public List<string> CurrentCurriculum
         {
             get
@@ -30,6 +31,7 @@ namespace TutorNotes
             }
         }
 
+        // Methods
         public void removeTopic(string topic)
         {
             CurrentCurriculum.Remove(topic);

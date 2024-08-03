@@ -81,8 +81,6 @@ namespace TutorNotes
                 valid++;
             }
 
-
-
             if (valid == 0)
             {
                 var gradeLevel = level.Content.ToString();

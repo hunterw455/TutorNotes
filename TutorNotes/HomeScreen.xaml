@@ -251,7 +251,6 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
 
-
         </Grid>
     </Border>
 </Window>
