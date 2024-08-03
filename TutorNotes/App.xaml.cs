@@ -23,7 +23,7 @@ namespace TutorNotes
         {
             base.OnStartup(e);
 
-            // Initialize the dictionary for user accounts
+            // Initialize the dictionary for user accounts as demonstration
             Educator user1 = new Educator("user1","abc123", "Jane", "Doe", "Educator");
             Educator user2 = new Educator("user2", "123abc", "John", "Doe", "Educator");
             TutorNotesUsers = new Dictionary<string, User>
@@ -34,17 +34,10 @@ namespace TutorNotes
             };
             signInHandler = new SignInHandler(TutorNotesUsers);
 
-            // Get the file path using relative path
-            string jsonFilePath = "curriculum.json"; // Assumes the file is in the same directory as the executable
+            // Gets the information from the json file 
+            string jsonFilePath = "curriculum.json";
             string jsonContent = File.ReadAllText(jsonFilePath);
             allCurriculum = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(jsonContent);
-
-            foreach(var topic in allCurriculum["1st"])
-            {
-                Console.WriteLine(topic);
-            }
-
-
         }
     }
 }

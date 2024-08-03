@@ -43,7 +43,6 @@ namespace TutorNotes
 
         }
 
-
         private void closeBttn_MouseEnter(object sender, MouseEventArgs e)
         {
             SolidColorBrush customBrush = (SolidColorBrush)FindResource("CustomColor5");

@@ -15,18 +15,7 @@ namespace TutorNotes
         }
         ~Note(){ }
 
-        public void addNote(string s, DateTime day)
-        {
-            if (!this._noteCollection.ContainsKey(day))
-            {
-                this._noteCollection.Add(day, s);
-            }
-            else
-            {
-                this._noteCollection[day] = s;
-            }
-        }
-
+        // Properties
         public Dictionary<DateTime, string> NoteCollection
         {
             get 
@@ -36,6 +25,19 @@ namespace TutorNotes
             set
             {
                 this._noteCollection = value;
+            }
+        }
+
+        // Methods
+        public void addNote(string s, DateTime day)
+        {
+            if (!this._noteCollection.ContainsKey(day))
+            {
+                this._noteCollection.Add(day, s);
+            }
+            else
+            {
+                this._noteCollection[day] = s;
             }
         }
 

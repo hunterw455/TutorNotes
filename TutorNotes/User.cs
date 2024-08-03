@@ -13,7 +13,7 @@ namespace TutorNotes
         private readonly int _userID;
         private string _firstName;
         private string _lastName;
-        private static int count = 1;
+        private static int count = 0;
 
         public User(string username, string password, string fName, string lName)
         {
@@ -26,6 +26,8 @@ namespace TutorNotes
         }
         ~User() { }
 
+
+        // Properties
         public string Username
         {
             get 

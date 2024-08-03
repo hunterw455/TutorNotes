@@ -10,10 +10,13 @@ namespace TutorNotes
     public class SignInHandler
     {
         private Dictionary<string, User> _userDataBase;
+
         public SignInHandler(Dictionary <string, User> userDataBase) { 
             this._userDataBase = userDataBase;
         }
+        ~SignInHandler() { }
 
+        //Properties
         public Dictionary<string, User> UserDataBase 
         {
             get 
@@ -26,6 +29,7 @@ namespace TutorNotes
             } 
         }
 
+        //Methods
         public bool userFound(string user)
         {
             return UserDataBase.ContainsKey(user);
